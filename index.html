@@ -27,38 +27,61 @@
   
   <body>
     <!--Header with business name and shopping cart-->
-    <header>
+    <header class="header">
       <h1>Christmas Shop</h1>
-      <!--Container for total and cart icon-->
-      <div class="cart-container" id="cart-container-script">
-        <div class="cart-summery">
-          <h2 class="cart-total-header" id="cart-total-header-script">Total: 0 SEK</h2>
-        </div>
-        <i class="cart-shopping-icon-container">
-          <span class="material-symbols-outlined cart-shopping-icon">
-            shopping_cart
-            </span>
-        </i>
-        <div class="cart-background" id="cart-background-script">
-          <span class="cart-count" id="cart-count-script"></span>
-        </div>
+      <!-- Container for total price and products -->
+      <div class="cart-container" id="cart-container">
+          <!-- Shopping cart icon that shows how many products -->
+          <!-- Total price in header -->
+          <div class="cart-summary">
+              <span class="style-total-header" id="cart-total-header"></span>
+          </div>
+          <i class="cart-shopping-icon" tabindex="0">
+              <span class="material-symbols-outlined shopping-icon">
+                  shopping_cart
+              </span>
+          </i>
+          <div class="cart-icon" id="cart-icon">
+              <span class="cart-count-style" id="cart-count"></span>
+          </div>
       </div>
-      <!--Shopping cart overlay-->
-      <div class="cart-overlay" id="cart-overlay-script">
-        <div class="cart-content">
-          <span class="material-symbols-outlined close-btn" id="close-cart-icon">
-            close
-            </span>
-            <h2>Your Shopping Cart</h2>
-            <!--Shows the total cart and total cost-->
-            <p id="cart-items">No products in the shopping cart</p>
-            <p><strong>Total:</strong><span id="cart-total"></span></p>
-        </div>
+      <div class="cart-overlay" id="cart-overlay">
+          <div class="cart-content">
+              <!-- Close btn for shopping cart -->
+              <span class="close-btn" id="close-cart"><span class="material-symbols-outlined">
+                      close
+                  </span></span>
+              <h2>Your shopping cart</h2>
+              <!-- Total products and price -->
+              <p id="cart-items">No products in the shopping cart.</p>
+              <p><strong>Total:</strong> <span id="cart-total"></span></p>
+          </div>
       </div>
-    </header>
+  </header>
 
-
-
+  <main>
+    <!-- Products to buy -->
+    <section class="shop-container">
+      <div class="sort-container">
+        <h2>Shop</h2>
+          <label for="sort">Sort by:</label>
+          <select id="sort">
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+            <option value="category">Category</option>
+          </select>
+      </div>
+      <div id="shopContent" class="shop-content"></div>
+    </section>
+        
+    <!--Dark/Light mode-->
+    <div class="btn-place">
+      <button class="btn"><span class="material-symbols-outlined">
+              light_mode <span class="material-symbols-outlined">
+                  dark_mode
+              </span>
+          </span></button>
+    </div>
 
     <!--JavaScript link-->
     <script src="script.js"></script>
