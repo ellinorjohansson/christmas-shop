@@ -22,6 +22,10 @@ header {
         font-size: 1.5rem;
         cursor: pointer;
     }
+    .cart-total-header {
+        font-size: 0.8rem;
+        color: $secondary-text-header-color;
+    }
     .cart-container {
         display: flex;
         align-items: center;
@@ -33,7 +37,7 @@ header {
     }
     .cart-count {
         position: absolute;
-        background-color: red;
+        background-color: $marker-color;
         color: $text-header-color;
         border-radius: 50%;
         padding: 2px 8px;
@@ -43,7 +47,7 @@ header {
         text-align: center;
         line-height: 20px;
         right: 58px;
-        top: 13px;
+        top: 10px;
         cursor: pointer;
     }
 }
