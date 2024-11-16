@@ -59,3 +59,37 @@ header {
 .cart-shopping-icon {
     font-size: 2rem;
 }
+
+/*Cart overlay that is open over everything else.*/
+.cart-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 1000;
+    color: white;
+    padding: 20px;
+    margin-top: 80px;
+    justify-content: center;
+    .cart-overlay.active {
+        display: flex;
+      }
+    .cart-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        width: 80%;
+        max-width: 400px;
+    }
+    .close-btn {
+        cursor: pointer;
+        font-size: 24px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+}
