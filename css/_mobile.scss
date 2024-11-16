@@ -5,3 +5,53 @@ body {
     box-sizing: border-box;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    background-color: $header-background-color;
+    color: $text-header-color;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+    h1 {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .cart-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+    }
+    .cart-icon {
+        position: relative;
+        cursor: pointer;
+    }
+    .cart-count {
+        position: absolute;
+        background-color: red;
+        color: $text-header-color;
+        border-radius: 50%;
+        padding: 2px 8px;
+        font-size: 1rem;
+        width: 10px;
+        height: 15px;
+        text-align: center;
+        line-height: 20px;
+        right: 58px;
+        top: 13px;
+        cursor: pointer;
+    }
+}
+
+.cart-shopping-icon-container {
+    cursor: pointer;
+}
+
+.cart-shopping-icon {
+    font-size: 2rem;
+}
