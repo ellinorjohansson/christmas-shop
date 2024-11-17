@@ -85,33 +85,74 @@ const products = [
  
 // Function to show products in HTML
 function displayProducts(productsToDisplay) {
-    const shopContent = document.querySelector("#shopContent");
-    shopContent.innerHTML = ""; // Clear content first
- 
-    productsToDisplay.forEach(product => {
-        const productElement = document.createElement("div");
-        productElement.className = "shop-item";
-        productElement.innerHTML = `
-            <img src="${product.image.url}" alt="${product.alt}">
-            <p>${product.name}</p>
-            <p>${product.price} SEK</p>
-            <p>${product.rating}</p>
-            <p>${product.category}</p>
-            <button class="add-item" data-price="${product.price}">Add product for ${product.price} SEK</button>
-        `;
-        shopContent.appendChild(productElement);
-    });
- 
-    // Add button for every Add Product
-    const addItemButtons = document.querySelectorAll('.add-item');
-    addItemButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Get the price
-            const price = parseInt(button.getAttribute('data-price'));
-            addItem(price); // Add product to shopping cart
-        });
-    });
+  const shopContent = document.querySelector("#shopContent");
+  shopContent.innerHTML = ""; // Clear content first
+
+  productsToDisplay.forEach(product => {
+      const productElement = document.createElement("div");
+      productElement.className = "shop-item";
+
+      // Add product HTML with quantity controls
+      productElement.innerHTML = `
+          <img src="${product.image.url}" alt="${product.alt}">
+          <p>${product.name}</p>
+          <p>${product.price} SEK</p>
+          <p>${product.rating}</p>
+          <p>${product.category}</p>
+          <div class="quantity-controls">
+              <button class="decrease" data-price="${product.price}" data-name="${product.name}">-</button>
+              <span class="quantity" data-name="${product.name}">0</span>
+              <button class="increase" data-price="${product.price}" data-name="${product.name}">+</button>
+          </div>
+          <button class="add-item" data-price="${product.price}" data-name="${product.name}">Add product</button>
+      `;
+      shopContent.appendChild(productElement);
+  });
+
+  attachEventListeners();
 }
+
+// Function to attach event listeners to increase/decrease buttons
+function attachEventListeners() {
+  const increaseButtons = document.querySelectorAll('.increase');
+  const decreaseButtons = document.querySelectorAll('.decrease');
+
+  increaseButtons.forEach(button => {
+      button.addEventListener('click', function () {
+          const productName = button.getAttribute('data-name');
+          const quantitySpan = document.querySelector(`.quantity[data-name="${productName}"]`);
+          let currentQuantity = parseInt(quantitySpan.innerText);
+          quantitySpan.innerText = currentQuantity + 1; 
+      });
+  });
+
+  decreaseButtons.forEach(button => {
+      button.addEventListener('click', function () {
+          const productName = button.getAttribute('data-name');
+          const quantitySpan = document.querySelector(`.quantity[data-name="${productName}"]`);
+          let currentQuantity = parseInt(quantitySpan.innerText);
+          if (currentQuantity > 0) {
+              quantitySpan.innerText = currentQuantity - 1;
+          }
+      });
+  });
+
+  const addItemButtons = document.querySelectorAll('.add-item');
+  addItemButtons.forEach(button => {
+      button.addEventListener('click', function () {
+          const price = parseInt(button.getAttribute('data-price'));
+          const productName = button.getAttribute('data-name');
+          const quantitySpan = document.querySelector(`.quantity[data-name="${productName}"]`);
+          const quantity = parseInt(quantitySpan.innerText);
+
+          if (quantity > 0) {
+              addItem(price * quantity); 
+              quantitySpan.innerText = 0; // Reset quantity after adding to cart
+          }
+      });
+  });
+}
+
  
  
 // Function to sort products
