@@ -98,7 +98,7 @@ function displayProducts(productsToDisplay) {
           <img src="${product.image.url}" alt="${product.alt}">
           <p>${product.name}</p>
           <p>${product.price} SEK</p>
-          <p>${product.rating}</p>
+          <p>Rating: ${product.rating}</p>
           <p>${product.category}</p>
           <div class="quantity-controls">
               <button class="decrease" data-price="${product.price}" data-name="${product.name}">-</button>
