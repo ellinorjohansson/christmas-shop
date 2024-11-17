@@ -60,10 +60,18 @@
   </header>
 
   <main>
+    <!--Dark/Light mode-->
+    <div class="btn-place">
+      <button class="btn"><span class="material-symbols-outlined">
+              light_mode <span class="material-symbols-outlined">
+                  dark_mode
+              </span>
+          </span></button>
+    </div>
     <!-- Products to buy -->
     <section class="shop-container">
       <div class="sort-container">
-        <h2>Shop</h2>
+        <h2 class="shop-header">Shop</h2>
           <label for="sort">Sort by:</label>
           <select id="sort">
             <option value="name">Name</option>
@@ -75,14 +83,6 @@
       <div id="shopContent" class="shop-content"></div>
     </section>
         
-    <!--Dark/Light mode-->
-    <div class="btn-place">
-      <button class="btn"><span class="material-symbols-outlined">
-              light_mode <span class="material-symbols-outlined">
-                  dark_mode
-              </span>
-          </span></button>
-    </div>
 
     <!--JavaScript link-->
     <script src="script.js"></script>
