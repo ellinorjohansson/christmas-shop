@@ -95,6 +95,7 @@ function displayProducts(productsToDisplay) {
             <img src="${product.image.url}" alt="${product.alt}">
             <p>${product.name}</p>
             <p>${product.price} SEK</p>
+            <p>${product.rating}</p>
             <p>${product.category}</p>
             <button class="add-item" data-price="${product.price}">Add product for ${product.price} SEK</button>
         `;
@@ -125,6 +126,8 @@ function sortProducts() {
             return a.name.localeCompare(b.name);
         } else if (sortBy === "category") {
             return a.category.localeCompare(b.category);
+        } else if (sortBy === "rating") {
+            return b.rating - a.rating;
         }
     });
  
