@@ -34,10 +34,11 @@ function toggleCart() {
 }
  
 // Function to add a product
-function addItem(price) {
+function addItem(totalPrice, quantity) {
     // Increase the number of items and add the price to the total
-    cartCount++;
-    cartTotal += price;
+    cartCount += quantity;
+    cartTotal += totalPrice;
+
    
     // Update the HTML elements with the current count and total amount
     document.querySelector('#cart-count').innerText = cartCount;
@@ -146,7 +147,7 @@ function attachEventListeners() {
           const quantity = parseInt(quantitySpan.innerText);
 
           if (quantity > 0) {
-              addItem(price * quantity); 
+              addItem(price * quantity, quantity); 
               quantitySpan.innerText = 0; // Reset quantity after adding to cart
           }
       });
