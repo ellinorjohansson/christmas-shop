@@ -57,29 +57,29 @@ document.querySelector('#cart-container').addEventListener('keydown', function(e
 //Shopping product
 const products = [
   { name: "Christmas Tree 1", category: "Christmas Tree", price: 500, rating: 4.8, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 200, height: 300, alt: "A" } },
+    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 200, height: 300, alt: "Picture of a Christmas tree with snow over it in porcelain. In the background are more similar Christmas trees." } },
   { name: "Christmas Tree 2", category: "Christmas Tree", price: 100, rating: 4.5, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 150, height: 150, alt: "A" } },
+    image: { url: "assets/images/Christmas_tree2.avif.avif", width: 150, height: 150, alt: "Picture of a Christmas tree with snow on it and a present under the tree, made in porcelain." } },
   { name: "Christmas Tree 3", category: "Christmas Tree", price: 200, rating: 4.7, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 200, height: 200, alt: "A" } },
+    image: { url: "assets/images/Christmas_tree3.avif.avif", width: 200, height: 200, alt: "Picture of two Christmas trees with snow on them and are decorated in porcelain standing next to each other and under them is a glass box." } },
   { name: "Gingerbread 1", category: "Gingerbread", price: 300, rating: 4.3, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 180, height: 250, alt: "A" } },
+    image: { url: "assets/images/Gingerbread_1.avif.avif", width: 180, height: 250, alt: "Decorated gingerbread house with a snowman standing outside wearing a red hat and scarf. Made in porcelain." } },
   { name: "Gingerbread 2", category: "Gingerbread", price: 150, rating: 4.9, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 150, height: 150, alt: "A" } },
+    image: { url: "assets/images/Gingerbread_2-avif.avif", width: 150, height: 150, alt: "Decorated gingerbread house with a gingerbread standing outside the house. Made in porcelain." } },
   { name: "Gingerbread 3", category: "Gingerbread", price: 250, rating: 4.6, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 300, height: 100, alt: "A" } },
-  { name: "Gold Christmas Bauble", category: "Bauble", price: 120, rating: 4.8, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 200, height: 200, alt: "A" } },
-  { name: "Red Christmas Bauble", category: "Bauble", price: 200, rating: 4.2, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 250, height: 200, alt: "A" } },
-  { name: "Snowflake Christmas Baulbe", category: "Bauble", price: 80, rating: 4.7, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 150, height: 150, alt: "A" } },
-  { name: "Santa Plate 1", category: "Plate", price: 50, rating: 4.4, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 120, height: 180, alt: "A" } },
-  { name: "Santa Plate 2", category: "Plate", price: 300, rating: 4.9, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 200, height: 200, alt: "A" } },
-  { name: "Santa Plate 3", category: "Plate", price: 400, rating: 4.5, 
-    image: { url: "assets/images/Christmas_tree1.avif.avif", width: 250, height: 150, alt: "A" } },
+    image: { url: "assets/images/Gingerbread_3.avif.avif", width: 300, height: 100, alt: "Decorated gingerbread house with Christmas trees on either side of the door outside the house. Made in porcelain." } },
+  { name: "Santa Plate 1", category: "Plate", price: 120, rating: 4.8, 
+    image: { url: "assets/images/Santa_plate1.avif.avif", width: 200, height: 200, alt: "A Christmas plate with a red border all around and a pattern of a standing happy Santa Claus and around the Santa Claus there is a deer, polka dot pole and Christmas decorations." } },
+  { name: "Santa Plate 2", category: "Plate", price: 200, rating: 4.2, 
+    image: { url: "assets/images/Santa_plate2.avif.avif", width: 250, height: 200, alt: "A" } },
+  { name: "Santa Plate 3", category: "Plate", price: 80, rating: 4.7, 
+    image: { url: "assets/images/Santa_plate3.avif.avif", width: 150, height: 150, alt: "A" } },
+  { name: "Gold Christmas Bauble", category: "Bauble", price: 50, rating: 4.4, 
+    image: { url: "assets/images/Gold_Christmas_bauble.avif.avif", width: 120, height: 180, alt: "A" } },
+  { name: "Red Christmas Bauble", category: "Bauble", price: 300, rating: 4.9, 
+    image: { url: "assets/images/Red_Christmas_bauble.avif.avif", width: 200, height: 200, alt: "A" } },
+  { name: "Snowflake Christmas Bauble", category: "Bauble", price: 400, rating: 4.5, 
+    image: { url: "assets/images/Snowflake_Christmas_bauble.avif.avif", width: 250, height: 150, alt: "A" } },
 ];
  
  
@@ -96,7 +96,7 @@ function displayProducts(productsToDisplay) {
             <p>${product.name}</p>
             <p>${product.price} SEK</p>
             <p>${product.category}</p>
-            <button class="add-item" data-price="${product.price}">Lägg till produkt för ${product.price} SEK</button>
+            <button class="add-item" data-price="${product.price}">Add product for ${product.price} SEK</button>
         `;
         shopContent.appendChild(productElement);
     });
