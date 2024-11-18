@@ -31,13 +31,13 @@ function toggleCart() {
     const cartOverlay = document.querySelector('#cart-overlay');
     const body = document.body;
 
-    // Toggle display och klass för body
+    // Toggle display och class för body - scroll when overlay
     if (cartOverlay.style.display === 'block') {
-        cartOverlay.style.display = 'none'; // Dölj overlayen
-        body.classList.remove('overlay-open'); // Återaktivera scrollning på body
+        cartOverlay.style.display = 'none'; 
+        body.classList.remove('overlay-open'); 
     } else {
-        cartOverlay.style.display = 'block'; // Visa overlayen
-        body.classList.add('overlay-open'); // Inaktivera scrollning på body
+        cartOverlay.style.display = 'block'; 
+        body.classList.add('overlay-open'); 
     }
 }
 
@@ -45,16 +45,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const paymentMethodSelector = document.getElementById('payment-method');
     const personalNumberContainer = document.getElementById('personal-number-container');
     const cardFields = document.getElementById('card-fields');
-    
-    // Dölja alla betalningsfält tills en metod är vald
-    personalNumberContainer.style.display = 'none';
-    cardFields.style.display = 'none';
-    
-    // Lyssna på betalningsmetodens ändring
+
+    // Standars payment to card
+    paymentMethodSelector.value = 'card'; 
+    personalNumberContainer.style.display = 'none'; 
+    cardFields.style.display = 'block'; 
+
     paymentMethodSelector.addEventListener('change', function () {
         const paymentMethod = this.value;
 
-        // Visa/dölj fält beroende på vald betalmetod
         if (paymentMethod === 'invoice') {
             personalNumberContainer.style.display = 'block';
             cardFields.style.display = 'none';
@@ -62,13 +61,34 @@ document.addEventListener("DOMContentLoaded", function () {
             personalNumberContainer.style.display = 'none';
             cardFields.style.display = 'block';
         }
+
+        validateForm(); 
     });
 
-    // Kontrollera initialt om en betalmetod är vald
-    if (paymentMethodSelector.value !== "") {
-        paymentMethodSelector.dispatchEvent(new Event('change'));
-    }
+    // Form valid for submit button
+    const form = document.querySelector('form'); 
+    const submitButton = document.getElementById('submit-form');
+
+    const validateForm = () => {
+        const inputs = form.querySelectorAll('input:required'); // Only recuired input
+        let allValid = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim() || (input.type === 'email' && !input.checkValidity())) {
+                allValid = false;
+            }
+        });
+
+        submitButton.disabled = !allValid;
+        submitButton.style.opacity = allValid ? '1' : '0.5'; 
+    };
+
+    form.addEventListener('input', validateForm);
+    form.addEventListener('change', validateForm);
+
+    validateForm();
 });
+
  
  // To open shopping cart with enter
 document.querySelector('#cart-container').addEventListener('keydown', function(event) {
