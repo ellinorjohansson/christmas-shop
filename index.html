@@ -75,7 +75,7 @@
         </label>
         <label>
           <span class="input-header">ZIP code</span>
-          <input type="text" name="ZIP" required>
+          <input type="number" name="ZIP" required>
         </label>
         <label>
           <span class="input-header">Postal Address</span>
@@ -83,16 +83,72 @@
         </label>
         <label>
           <span class="input-header">Port Code</span>
-          <input type="text" name="Port">
+          <input type="number" name="Port">
         </label>
         <label>
           <span class="input-header">Phone Number</span>
-          <input type="text" name="Phone" required>
+          <input type="number" name="Phone" required>
         </label>
         <label>
           <span class="input-header">Email Address</span>
-          <input type="text" name="Email" required>
+          <input type="email" name="Email" required>
         </label>
+
+         <!-- Payment Options -->
+         <label>
+          <span class="input-header">Payment Method</span>
+          <select id="payment-method" name="PaymentMethod" required>
+            <option value="card">Credit Card</option>
+            <option value="invoice">Invoice</option>
+          </select>
+        </label>
+
+        <!-- Conditional Fields -->
+        <!-- Swedish Personal Number -->
+        <div id="personal-number-container" style="display: none;">
+          <label>
+            <span class="input-header">Swedish Personal Number</span>
+            <input type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" />
+          </label>
+        </div>
+
+        <!-- Credit Card Fields -->
+        <div id="card-fields" style="display: none;">
+          <label>
+            <span class="input-header">Card Number</span>
+            <input type="text" name="CardNumber" placeholder="**** **** **** ****" />
+          </label>
+          <label>
+            <span class="input-header">Expiration Date</span>
+            <input type="text" name="CardExpiry" placeholder="MM/YY" />
+          </label>
+          <label>
+            <span class="input-header">CVC</span>
+            <input type="text" name="CardCVC" placeholder="***" />
+          </label>
+        </div>
+
+        <!-- Checkbox for terms -->
+        <label>
+          <input type="checkbox" name="PrivacyPolicy" required>
+          I agree to the <a href="#">terms and conditions</a>.
+        </label>
+
+        <!-- Newsletter Checkbox (default checked) -->
+        <label>
+          <input type="checkbox" name="Newsletter" checked>
+          Subscribe to our newsletter
+        </label>
+
+        <!-- Discount Code -->
+        <label>
+          <span class="input-header">Discount Code</span>
+          <input type="text" name="DiscountCode" />
+        </label>
+
+        <!-- Buttons -->
+        <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
+        <button type="submit" id="submit-form" class="submit-btn" disabled>Place Order</button>
       </form>
     </div>
 

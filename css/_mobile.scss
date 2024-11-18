@@ -97,6 +97,7 @@ body.overlay-open {
     }
 }
 
+// Generella stilar för formulär
 form {
     margin-top: 20px;
     background: $background-color;
@@ -107,6 +108,7 @@ form {
     .form-header {
         font-size: 1.5rem;
         margin-bottom: 10px;
+        text-align: center;
     }
     label {
         display: flex;
@@ -116,13 +118,157 @@ form {
     .input-header {
         font-size: 0.9rem;
         margin-bottom: 5px;
+        font-weight: bold;
     }
-    input {
+    input, select {
         padding: 10px;
         border-radius: 4px;
-        width: 300px;
+        width: 100%;
+        max-width: 300px; // Justering så alla fält är samma bredd
+        border: 1px solid $border-color;
+        margin-bottom: 5px;
+    }
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: $input-background-color;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus, select:focus {
+        border-color: $highlight-color;
+        outline: none;
+    }
+
+    .input-error {
+        color: $error-color;
+        font-size: 0.8rem;
+        display: block;
+        margin-top: 5px;
+    }
+
+    .input-error:before {
+        content: "⚠️ ";
     }
 }
+
+// Visa och dölja fält beroende på betalsätt
+#personal-number-container,
+#card-fields {
+    display: none;
+}
+
+#payment-method[value="invoice"]:checked ~ #personal-number-container {
+    display: block;
+}
+
+#payment-method[value="card"]:checked ~ #card-fields {
+    display: block;
+}
+
+// Styla checkboxar
+label input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+label input[type="checkbox"]:checked + span::before {
+    content: "✔";
+    color: $highlight-color;
+}
+
+label input[type="checkbox"]:not(:checked) + span::before {
+    content: "❌";
+    color: $error-color;
+}
+
+// Knappar
+button {
+    background-color: $button-bg-color;
+    color: $button-text-color;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: $button-bg-hover-color;
+    }
+
+    &:disabled {
+        background-color: $button-bg-disabled-color;
+        cursor: not-allowed;
+    }
+}
+
+// Reset Button (för att återställa formulär)
+.reset-btn {
+    background-color: $reset-button-bg;
+    color: $reset-button-text-color;
+    margin-top: 10px;
+}
+
+// Betalsätt (Payment Method) dropdown
+#payment-method {
+    background-color: $input-background-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+// Styla formcontainer och overlay
+.cart-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    color: $background-color;
+    padding: 20px;
+    overflow-y: auto;
+
+    .cart-content {
+        background: $background-color;
+        color: $text-color;
+        padding: 20px;
+        max-width: 500px;
+        width: 90%;
+        border-radius: 5px;
+        margin: 0 auto;
+    }
+
+    .close-btn {
+        float: right;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: $text-color;
+    }
+}
+
+// Anpassa knappar för både submit och reset
+.submit-btn {
+    background-color: $primary-color;
+    color: $text-color;
+}
+
+.submit-btn:disabled {
+    background-color: $disabled-color;
+    cursor: not-allowed;
+}
+
+.reset-btn {
+    background-color: red;
+    color: $text-color;
+}
+
 
 .btn-place {
     display: flex;

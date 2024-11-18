@@ -41,20 +41,48 @@ function toggleCart() {
     }
 }
 
- 
+document.addEventListener("DOMContentLoaded", function () {
+    const paymentMethodSelector = document.getElementById('payment-method');
+    const personalNumberContainer = document.getElementById('personal-number-container');
+    const cardFields = document.getElementById('card-fields');
+    
+    // Dölja alla betalningsfält tills en metod är vald
+    personalNumberContainer.style.display = 'none';
+    cardFields.style.display = 'none';
+    
+    // Lyssna på betalningsmetodens ändring
+    paymentMethodSelector.addEventListener('change', function () {
+        const paymentMethod = this.value;
+
+        // Visa/dölj fält beroende på vald betalmetod
+        if (paymentMethod === 'invoice') {
+            personalNumberContainer.style.display = 'block';
+            cardFields.style.display = 'none';
+        } else if (paymentMethod === 'card') {
+            personalNumberContainer.style.display = 'none';
+            cardFields.style.display = 'block';
+        }
+    });
+
+    // Kontrollera initialt om en betalmetod är vald
+    if (paymentMethodSelector.value !== "") {
+        paymentMethodSelector.dispatchEvent(new Event('change'));
+    }
+});
+
+
 // Function to add a product
 function addItem(totalPrice, quantity) {
-    // Increase the number of items and add the price to the total
     cartCount += quantity;
     cartTotal += totalPrice;
 
-   
-    // Update the HTML elements with the current count and total amount
+    // Uppdatera varukorgen i HTML
     document.querySelector('#cart-count').innerText = cartCount;
-    document.querySelector('#cart-total').innerText = cartTotal + " SEK";  
-    document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK"; 
+    document.querySelector('#cart-total').innerText = cartTotal + " SEK";
+    document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
+
  
  // To open shopping cart with enter
 document.querySelector('#cart-container').addEventListener('keydown', function(event) {
@@ -62,6 +90,41 @@ document.querySelector('#cart-container').addEventListener('keydown', function(e
         toggleCart();
     }
 });
+
+document.getElementById('reset-btn').addEventListener('click', function() {
+    // Reset all input fields in the form
+    const form = document.querySelector('form');
+    form.reset();  
+  
+    // Reset cart data
+    document.getElementById('cart-items').textContent = 'No products in the shopping cart.';
+    document.getElementById('cart-total').textContent = '0 SEK';
+    document.getElementById('cart-total-header').textContent = 'Total: 0 SEK';
+    document.getElementById('cart-count').textContent = '0';
+  
+    // Reset selected payment method and related fields
+    const paymentMethodSelect = document.getElementById('payment-method');
+    paymentMethodSelect.value = 'card';  // Reset to default value
+
+  
+    // Reset the discount code
+    const discountCodeInput = form.querySelector('[name="DiscountCode"]');
+    discountCodeInput.value = '';  // Clear discount code input
+  
+    // Reset the newsletter checkbox (checked by default)
+    const newsletterCheckbox = form.querySelector('[name="Newsletter"]');
+    newsletterCheckbox.checked = true;  // Reset to checked state
+  
+    // Enable the "Place Order" button again
+    const submitButton = document.getElementById('submit-form');
+    submitButton.disabled = true;
+  });
+  
+
+
+
+
+
 
 //Shopping product
 const products = [
