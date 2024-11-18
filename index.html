@@ -55,12 +55,11 @@
                 close
             </span></span>
         <h2>Your shopping cart</h2>
-        <!-- Total products and price -->
         <p id="cart-items">No products in the shopping cart.</p>
         <p><strong>Total:</strong> <span id="cart-total"></span></p>
       </div>
       <form action="#">
-        <h2 class="form-header">Shipping form</h2>
+        <h2 class="form-header">Checkout</h2>
         <label>
           <span class="input-header">Firstname</span>
           <input type="text" name="Firstname" required>
@@ -103,7 +102,6 @@
           </select>
         </label>
 
-        <!-- Conditional Fields -->
         <!-- Swedish Personal Number -->
         <div id="personal-number-container" style="display: none;">
           <label>
@@ -129,15 +127,15 @@
         </div>
 
         <!-- Checkbox for terms -->
-        <label>
-          <input type="checkbox" name="PrivacyPolicy" required>
-          I agree to the <a href="#">terms and conditions</a>.
+        <label class="checkbox">
+          <span>I agree to the <a href="#">terms and conditions</a></span>
+          <input type="checkbox" name="PrivacyPolicy" class="check-terms" required>
         </label>
 
-        <!-- Newsletter Checkbox (default checked) -->
-        <label>
-          <input type="checkbox" name="Newsletter" checked>
-          Subscribe to our newsletter
+        <!-- Newsletter Checkbox -->
+        <label class="checkbox">
+          <span>Subscribe to our newsletter</span>
+          <input type="checkbox" name="Newsletter" class="check-subscribe" checked>
         </label>
 
         <!-- Discount Code -->
@@ -167,7 +165,7 @@
       <div class="sort-container">
         <h2 class="shop-header">Shop</h2>
           <label for="sort">Sort by:</label>
-          <select id="sort">
+          <select id="sort" class="sort-by">
             <option value="name">Name</option>
             <option value="price">Price</option>
             <option value="category">Category</option>

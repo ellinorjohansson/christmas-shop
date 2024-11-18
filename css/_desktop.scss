@@ -1,3 +1,4 @@
-body {
-    background-color: pink;
+.shop-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }

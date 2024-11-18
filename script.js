@@ -69,20 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
         paymentMethodSelector.dispatchEvent(new Event('change'));
     }
 });
-
-
-// Function to add a product
-function addItem(totalPrice, quantity) {
-    cartCount += quantity;
-    cartTotal += totalPrice;
-
-    // Uppdatera varukorgen i HTML
-    document.querySelector('#cart-count').innerText = cartCount;
-    document.querySelector('#cart-total').innerText = cartTotal + " SEK";
-    document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
-    document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
-}
-
  
  // To open shopping cart with enter
 document.querySelector('#cart-container').addEventListener('keydown', function(event) {
@@ -120,12 +106,6 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     submitButton.disabled = true;
   });
   
-
-
-
-
-
-
 //Shopping product
 const products = [
   { name: "Christmas Tree 1", category: "Christmas Tree", price: 500, rating: 4.8, 
@@ -225,7 +205,17 @@ function attachEventListeners() {
   });
 }
 
- 
+// Function to add a product
+function addItem(totalPrice, quantity) {
+    cartCount += quantity;
+    cartTotal += totalPrice;
+
+    // Uppdatera varukorgen i HTML
+    document.querySelector('#cart-count').innerText = cartCount;
+    document.querySelector('#cart-total').innerText = cartTotal + " SEK";
+    document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
+    document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
+}
  
 // Function to sort products
 function sortProducts() {
