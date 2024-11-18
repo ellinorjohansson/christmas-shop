@@ -29,9 +29,18 @@ addItemButtons.forEach(button => {
 // Function to hide/show shopping cart
 function toggleCart() {
     const cartOverlay = document.querySelector('#cart-overlay');
-    // Switch between show and hide shopping cart
-    cartOverlay.style.display = cartOverlay.style.display === 'block' ? 'none' : 'block';
+    const body = document.body;
+
+    // Toggle display och klass för body
+    if (cartOverlay.style.display === 'block') {
+        cartOverlay.style.display = 'none'; // Dölj overlayen
+        body.classList.remove('overlay-open'); // Återaktivera scrollning på body
+    } else {
+        cartOverlay.style.display = 'block'; // Visa overlayen
+        body.classList.add('overlay-open'); // Inaktivera scrollning på body
+    }
 }
+
  
 // Function to add a product
 function addItem(totalPrice, quantity) {
@@ -53,8 +62,7 @@ document.querySelector('#cart-container').addEventListener('keydown', function(e
         toggleCart();
     }
 });
- 
- 
+
 //Shopping product
 const products = [
   { name: "Christmas Tree 1", category: "Christmas Tree", price: 500, rating: 4.8, 

@@ -45,21 +45,59 @@
               <span class="cart-count-style" id="cart-count"></span>
           </div>
       </div>
-      <div class="cart-overlay" id="cart-overlay">
-          <div class="cart-content">
-              <!-- Close btn for shopping cart -->
-              <span class="close-btn" id="close-cart"><span class="material-symbols-outlined">
-                      close
-                  </span></span>
-              <h2>Your shopping cart</h2>
-              <!-- Total products and price -->
-              <p id="cart-items">No products in the shopping cart.</p>
-              <p><strong>Total:</strong> <span id="cart-total"></span></p>
-          </div>
-      </div>
   </header>
 
   <main>
+    <div class="cart-overlay" id="cart-overlay">
+      <div class="cart-content">
+        <!-- Close btn for shopping cart -->
+        <span class="close-btn" id="close-cart"><span class="material-symbols-outlined">
+                close
+            </span></span>
+        <h2>Your shopping cart</h2>
+        <!-- Total products and price -->
+        <p id="cart-items">No products in the shopping cart.</p>
+        <p><strong>Total:</strong> <span id="cart-total"></span></p>
+      </div>
+      <form action="#">
+        <h2 class="form-header">Shipping form</h2>
+        <label>
+          <span class="input-header">Firstname</span>
+          <input type="text" name="Firstname" required>
+        </label>
+        <label>
+          <span class="input-header">Lastname</span>
+          <input type="text" name="Lastname" required>
+        </label>
+        <label>
+          <span class="input-header">Address</span>
+          <input type="text" name="Address" required>
+        </label>
+        <label>
+          <span class="input-header">ZIP code</span>
+          <input type="text" name="ZIP" required>
+        </label>
+        <label>
+          <span class="input-header">Postal Address</span>
+          <input type="text" name="Postal" required>
+        </label>
+        <label>
+          <span class="input-header">Port Code</span>
+          <input type="text" name="Port">
+        </label>
+        <label>
+          <span class="input-header">Phone Number</span>
+          <input type="text" name="Phone" required>
+        </label>
+        <label>
+          <span class="input-header">Email Address</span>
+          <input type="text" name="Email" required>
+        </label>
+      </form>
+    </div>
+
+
+
     <!--Dark/Light mode-->
     <div class="btn-place">
       <button class="btn"><span class="material-symbols-outlined">
@@ -82,6 +120,7 @@
       </div>
       <div id="shopContent" class="shop-content"></div>
     </section>
+    
         
 
     <!--JavaScript link-->
