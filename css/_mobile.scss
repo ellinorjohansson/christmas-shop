@@ -128,17 +128,6 @@ form {
     select {
         background-color: rgb(198, 198, 198);
     }
-
-    .input-error {
-        color: red;
-        font-size: 0.8rem;
-        display: block;
-        margin-top: 5px;
-    }
-
-    .input-error:before {
-        content: "⚠️ ";
-    }
 }
 
 //Dark/Light switch
