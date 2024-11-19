@@ -29,6 +29,7 @@ const products = [
 // Variables for total and count
 let cartCount = 0;
 let cartTotal = 0;
+let cartItems = [];
 
 // Update cart total and count in HTML
 function updateCart() {
@@ -37,6 +38,7 @@ function updateCart() {
     document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
+
 
 // Toggle shopping cart visibility
 function toggleCart() {
@@ -66,11 +68,53 @@ function setupCartListeners() {
 }
 
 // Handle adding product to cart
-function addItemToCart(price, quantity) {
+function addItemToCart(name, price, quantity) {
+    let existingItem = cartItems.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity += quantity;
+        existingItem.totalPrice = existingItem.quantity * price;
+    } else {
+        cartItems.push({
+            name: name,
+            price: price,
+            quantity: quantity,
+            totalPrice: quantity * price,
+        });
+    }
+
     cartCount += quantity;
     cartTotal += price * quantity;
+
     updateCart();
+    updateOverlay();
 }
+
+//What you want to shop that views in overlay
+function updateOverlay() {
+    const cartDetails = document.querySelector('#cart-details');
+    cartDetails.innerHTML = "";
+
+    cartItems.forEach(item => {
+        const product = products.find(product => product.name === item.name);
+
+        if (product) {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'cart-item';
+
+            itemElement.innerHTML = `
+                <img src="${product.image.url}" alt="${product.image.alt}" class="cart-item-image">
+                <p><strong>${item.name}</strong></p>
+                <p>Price: ${item.price} SEK</p>
+                <p>Quantity: ${item.quantity}</p>
+                <p>Total: ${item.totalPrice} SEK</p>
+            `;
+
+            cartDetails.appendChild(itemElement);
+        }
+    });
+}
+
+
 
 // Handle product quantity increase/decrease
 function updateProductQuantity() {
@@ -107,12 +151,13 @@ function setupAddToCartButtons() {
             const quantity = parseInt(quantitySpan.innerText);
 
             if (quantity > 0) {
-                addItemToCart(price, quantity); 
-                quantitySpan.innerText = 0; // Reset quantity after adding to cart
+                addItemToCart(productName, price, quantity); 
+                quantitySpan.innerText = 0; 
             }
         });
     });
 }
+
 
 // Display all products
 function displayProducts(productsToDisplay) {

@@ -95,6 +95,11 @@ body.overlay-open {
         font-size: 1.5rem;
         color: $text-color;
     }
+    .cart-item-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+    }
 }
 
 form {
