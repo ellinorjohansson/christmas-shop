@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
     
-            // Standars validation
+            // Standard validation
             if (!input.value.trim() || (input.type === 'email' && !input.checkValidity())) {
                 allValid = false;
             }
@@ -125,33 +125,9 @@ document.querySelector('#cart-container').addEventListener('keydown', function(e
     }
 });
 
+//Reset shop
 document.getElementById('reset-btn').addEventListener('click', function() {
-    // Reset all input fields in the form
-    const form = document.querySelector('form');
-    form.reset();  
-  
-    // Reset cart data
-    document.getElementById('cart-items').textContent = 'No products in the shopping cart.';
-    document.getElementById('cart-total').textContent = '0 SEK';
-    document.getElementById('cart-total-header').textContent = 'Total: 0 SEK';
-    document.getElementById('cart-count').textContent = '0';
-  
-    // Reset selected payment method and related fields
-    const paymentMethodSelect = document.getElementById('payment-method');
-    paymentMethodSelect.value = 'card';  // Reset to default value
-
-  
-    // Reset the discount code
-    const discountCodeInput = form.querySelector('[name="DiscountCode"]');
-    discountCodeInput.value = '';  // Clear discount code input
-  
-    // Reset the newsletter checkbox (checked by default)
-    const newsletterCheckbox = form.querySelector('[name="Newsletter"]');
-    newsletterCheckbox.checked = true;  // Reset to checked state
-  
-    // Enable the "Place Order" button again
-    const submitButton = document.getElementById('submit-form');
-    submitButton.disabled = true;
+    location.reload();
   });
   
 //Shopping product
@@ -311,3 +287,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+
