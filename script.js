@@ -5,7 +5,7 @@ let cartTotal = 0;
 function initializeCart() {
     document.querySelector('#cart-count').innerText = cartCount;
     document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
-    document.querySelector('#cart-total').innerText = cartTotal + " SEK";  // För varukorgen
+    document.querySelector('#cart-total').innerText = cartTotal + " SEK";  
 }
  
 initializeCart();
@@ -44,50 +44,78 @@ function toggleCart() {
 document.addEventListener("DOMContentLoaded", function () {
     const paymentMethodSelector = document.getElementById('payment-method');
     const personalNumberContainer = document.getElementById('personal-number-container');
+    const personalNumberInput = document.getElementById('personal-number');
     const cardFields = document.getElementById('card-fields');
+    const form = document.querySelector('form'); 
+    const submitButton = document.getElementById('submit-form');
 
-    // Standars payment to card
+    // Standard paymethod
     paymentMethodSelector.value = 'card'; 
     personalNumberContainer.style.display = 'none'; 
     cardFields.style.display = 'block'; 
 
+    // Switch paymethod
     paymentMethodSelector.addEventListener('change', function () {
         const paymentMethod = this.value;
 
         if (paymentMethod === 'invoice') {
             personalNumberContainer.style.display = 'block';
             cardFields.style.display = 'none';
+            personalNumberInput.required = true; 
         } else if (paymentMethod === 'card') {
             personalNumberContainer.style.display = 'none';
             cardFields.style.display = 'block';
+            personalNumberInput.required = false; 
+            personalNumberInput.setCustomValidity(""); 
         }
 
         validateForm(); 
     });
 
-    // Form valid for submit button
-    const form = document.querySelector('form'); 
-    const submitButton = document.getElementById('submit-form');
+    // Validation for personal number
+    personalNumberInput.addEventListener('input', function () {
+        const value = personalNumberInput.value.trim();
+        const regex = /^\d{8}-\d{4}$/; // This means how you are supposed to write your personal number
 
+        if (!regex.test(value)) {
+            personalNumberInput.setCustomValidity("Enter a valid social security number in the format ÅÅÅÅMMDD-XXXX.");
+        } else {
+            personalNumberInput.setCustomValidity(""); 
+        }
+
+        validateForm();
+    });
+
+    // Form validation
     const validateForm = () => {
-        const inputs = form.querySelectorAll('input:required'); // Only recuired input
+        const inputs = form.querySelectorAll('input:required'); 
+        const paymentMethod = paymentMethodSelector.value; 
         let allValid = true;
-
+    
         inputs.forEach(input => {
+            // If paymethod is card you can jump over this
+            if (paymentMethod === 'card' && input.id === 'personal-number') {
+                input.setCustomValidity(""); 
+                return;
+            }
+    
+            // Standars validation
             if (!input.value.trim() || (input.type === 'email' && !input.checkValidity())) {
                 allValid = false;
             }
         });
-
+    
         submitButton.disabled = !allValid;
-        submitButton.style.opacity = allValid ? '1' : '0.5'; 
+        submitButton.style.opacity = allValid ? '1' : '0.5';
     };
+    
 
     form.addEventListener('input', validateForm);
     form.addEventListener('change', validateForm);
 
-    validateForm();
+    validateForm(); 
 });
+
 
  
  // To open shopping cart with enter
