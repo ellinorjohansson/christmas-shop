@@ -26,7 +26,7 @@ const products = [
       image: { url: "assets/images/Snowflake_Christmas_bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a snowflake Christmas bauble hanging from a Christmas tree." } },
   ];
 
-// Global variables for cart
+// Variables for total and count
 let cartCount = 0;
 let cartTotal = 0;
 
@@ -244,4 +244,6 @@ document.addEventListener("DOMContentLoaded", () => {
     handlePaymentMethodChange();
 
     document.getElementById("sort").addEventListener("change", sortProducts);
+
+    updateCart();
 });
