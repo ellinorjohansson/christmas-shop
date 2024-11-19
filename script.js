@@ -104,7 +104,7 @@ function updateOverlay() {
             itemElement.innerHTML = `
                 <img src="${product.image.url}" alt="${product.image.alt}" class="cart-item-image">
                 <p><strong>${item.name}</strong></p>
-                <p>Price: ${item.price} SEK</p>
+                <p>Price for one: ${item.price} SEK</p>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Total: ${item.totalPrice} SEK</p>
             `;
