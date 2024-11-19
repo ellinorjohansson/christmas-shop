@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chrsitmas Shop</title>
+    <title>Christmas Shop</title>
     <!--Meta tags-->
     <meta
       name="description"
@@ -37,7 +37,7 @@
               <span class="style-total-header" id="cart-total-header"></span>
           </div>
           <i class="cart-shopping-icon" tabindex="0">
-              <span class="material-symbols-outlined shopping-icon">
+              <span aria-label="Shoppingcarticon" class="material-symbols-outlined shopping-icon">
                   shopping_cart
               </span>
           </i>
@@ -51,7 +51,7 @@
     <div class="cart-overlay" id="cart-overlay">
       <div class="cart-content">
         <!-- Close btn for shopping cart -->
-        <span class="close-btn" id="close-cart"><span class="material-symbols-outlined">
+        <span aria-label="closeicon" class="close-btn" id="close-cart"><span class="material-symbols-outlined">
                 close
             </span></span>
         <h2>Your shopping cart</h2>
@@ -106,7 +106,7 @@
         <div id="personal-number-container" style="display: none;">
           <label>
             <span class="input-header">Swedish Personal Number</span>
-            <input type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" />
+            <input type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" required />
           </label>
         </div>
 
