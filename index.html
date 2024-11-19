@@ -1,28 +1,28 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christmas Shop</title>
     <!--Meta tags-->
     <meta
       name="description"
       content="This is my description in 2-4 sentences"
-    />
-    <meta property="og:title" content="Christmas shop" />
+    >
+    <meta property="og:title" content="Christmas shop">
     <meta
       property="og:description"
       content="This is my description in 2-4 sentences"
-    />
-    <meta property="og:image" content="assets/images/Christmas_tree1.avif.avif" />
-    <meta property="og:url" content="#" />
-    <meta property="og:type" content="website" />
+    >
+    <meta property="og:image" content="assets/images/Christmas_tree1.avif.avif">
+    <meta property="og:url" content="#">
+    <meta property="og:type" content="website">
     <!--Font link-->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Fauna+One&display=swap" rel="stylesheet">
     <!--Icon link-->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
     <!--CSS link-->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css">
   </head>
   
   <body>
@@ -45,138 +45,138 @@
               <span class="cart-count-style" id="cart-count"></span>
           </div>
       </div>
-  </header>
+    </header>
 
-  <main>
-    <div class="cart-overlay" id="cart-overlay">
-      <div class="cart-content">
-        <!-- Close btn for shopping cart -->
-        <span aria-label="closeicon" class="close-btn" id="close-cart"><span class="material-symbols-outlined">
-                close
-            </span></span>
-        <h2>Your shopping cart</h2>
-        <p id="cart-items">No products in the shopping cart.</p>
-        <p><strong>Total:</strong> <span id="cart-total"></span></p>
-      </div>
-      <form action="#">
-        <h2 class="form-header">Checkout</h2>
-        <label>
-          <span class="input-header">Firstname</span>
-          <input type="text" name="Firstname" required>
-        </label>
-        <label>
-          <span class="input-header">Lastname</span>
-          <input type="text" name="Lastname" required>
-        </label>
-        <label>
-          <span class="input-header">Address</span>
-          <input type="text" name="Address" required>
-        </label>
-        <label>
-          <span class="input-header">ZIP code</span>
-          <input type="number" name="ZIP" required>
-        </label>
-        <label>
-          <span class="input-header">Postal Address</span>
-          <input type="text" name="Postal" required>
-        </label>
-        <label>
-          <span class="input-header">Port Code</span>
-          <input type="number" name="Port">
-        </label>
-        <label>
-          <span class="input-header">Phone Number</span>
-          <input type="number" name="Phone" required>
-        </label>
-        <label>
-          <span class="input-header">Email Address</span>
-          <input type="email" name="Email" required>
-        </label>
-
-         <!-- Payment Options -->
-         <label>
-          <span class="input-header">Payment Method</span>
-          <select id="payment-method" name="PaymentMethod" required>
-            <option value="card">Credit Card</option>
-            <option value="invoice">Invoice</option>
-          </select>
-        </label>
-
-        <!-- Swedish Personal Number -->
-        <div id="personal-number-container" style="display: none;">
-          <label>
-            <span class="input-header">Swedish Personal Number</span>
-            <input type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" required />
-          </label>
+    <main>
+      <div class="cart-overlay" id="cart-overlay">
+        <div class="cart-content">
+          <!-- Close btn for shopping cart -->
+          <span aria-label="closeicon" class="close-btn" id="close-cart"><span class="material-symbols-outlined">
+                  close
+              </span></span>
+          <h2>Your shopping cart</h2>
+          <p id="cart-items">No products in the shopping cart.</p>
+          <p><strong>Total:</strong> <span id="cart-total"></span></p>
         </div>
-
-        <!-- Credit Card Fields -->
-        <div id="card-fields" style="display: none;">
+        <form action="#">
+          <h2 class="form-header">Checkout</h2>
           <label>
-            <span class="input-header">Card Number</span>
-            <input type="text" name="CardNumber" placeholder="**** **** **** ****" />
+            <span class="input-header">Firstname</span>
+            <input type="text" name="Firstname" required>
           </label>
           <label>
-            <span class="input-header">Expiration Date</span>
-            <input type="text" name="CardExpiry" placeholder="MM/YY" />
+            <span class="input-header">Lastname</span>
+            <input type="text" name="Lastname" required>
           </label>
           <label>
-            <span class="input-header">CVC</span>
-            <input type="text" name="CardCVC" placeholder="***" />
+            <span class="input-header">Address</span>
+            <input type="text" name="Address" required>
           </label>
-        </div>
+          <label>
+            <span class="input-header">ZIP code</span>
+            <input type="number" name="ZIP" required>
+          </label>
+          <label>
+            <span class="input-header">Postal Address</span>
+            <input type="text" name="Postal" required>
+          </label>
+          <label>
+            <span class="input-header">Port Code (optional)</span>
+            <input type="number" name="Port">
+          </label>
+          <label>
+            <span class="input-header">Phone Number</span>
+            <input type="number" name="Phone" required>
+          </label>
+          <label>
+            <span class="input-header">Email Address</span>
+            <input type="email" name="Email" required>
+          </label>
 
-        <!-- Checkbox for terms -->
-        <label class="checkbox">
-          <span>I agree to the <a href="#">terms and conditions</a></span>
-          <input type="checkbox" name="PrivacyPolicy" class="check-terms" required>
-        </label>
+          <!-- Payment Options -->
+          <label>
+            <span class="input-header">Payment Method</span>
+            <select id="payment-method" name="PaymentMethod">
+              <option value="card">Credit Card</option>
+              <option value="invoice">Invoice</option>
+            </select>
+          </label>
 
-        <!-- Newsletter Checkbox -->
-        <label class="checkbox">
-          <span>Subscribe to our newsletter</span>
-          <input type="checkbox" name="Newsletter" class="check-subscribe" checked>
-        </label>
+          <!-- Swedish Personal Number -->
+          <div id="personal-number-container" style="display: none;">
+            <label>
+              <span class="input-header">Swedish Personal Number</span>
+              <input type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" required>
+            </label>
+          </div>
 
-        <!-- Discount Code -->
-        <label>
-          <span class="input-header">Discount Code</span>
-          <input type="text" name="DiscountCode" />
-        </label>
+          <!-- Credit Card Fields -->
+          <div id="card-fields" style="display: none;">
+            <label>
+              <span class="input-header">Card Number</span>
+              <input type="text" name="CardNumber" placeholder="**** **** **** ****">
+            </label>
+            <label>
+              <span class="input-header">Expiration Date</span>
+              <input type="text" name="CardExpiry" placeholder="MM/YY">
+            </label>
+            <label>
+              <span class="input-header">CVC</span>
+              <input type="text" name="CardCVC" placeholder="***">
+            </label>
+          </div>
 
-        <!-- Buttons -->
-        <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
-        <button type="submit" id="submit-form" class="submit-btn" disabled>Place Order</button>
-      </form>
-    </div>
+          <!-- Checkbox for terms -->
+          <label class="checkbox">
+            <span>I agree to the <a href="#">terms and conditions</a></span>
+            <input type="checkbox" name="PrivacyPolicy" class="check-terms" required>
+          </label>
 
+          <!-- Newsletter Checkbox -->
+          <label class="checkbox">
+            <span>Subscribe to our newsletter</span>
+            <input type="checkbox" name="Newsletter" class="check-subscribe" checked>
+          </label>
 
+          <!-- Discount Code -->
+          <label>
+            <span class="input-header">Discount Code</span>
+            <input type="text" name="DiscountCode">
+          </label>
 
-    <!--Dark/Light mode-->
-    <div class="btn-place">
-      <button class="btn"><span class="material-symbols-outlined">
-              light_mode <span class="material-symbols-outlined">
-                  dark_mode
-              </span>
-          </span></button>
-    </div>
-    <!-- Products to buy -->
-    <section class="shop-container">
-      <div class="sort-container">
-        <h2 class="shop-header">Shop</h2>
-          <label for="sort">Sort by:</label>
-          <select id="sort" class="sort-by">
-            <option value="name">Name</option>
-            <option value="price">Price</option>
-            <option value="category">Category</option>
-            <option value="rating">Rating</option>
-          </select>
+          <!-- Buttons -->
+          <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
+          <button type="submit" id="submit-form" class="submit-btn" disabled>Place Order</button>
+        </form>
       </div>
-      <div id="shopContent" class="shop-content"></div>
-    </section>
-    
-        
 
+
+
+      <!--Dark/Light mode-->
+      <div class="btn-place">
+        <button class="btn"><span class="material-symbols-outlined">
+                light_mode <span class="material-symbols-outlined">
+                    dark_mode
+                </span>
+            </span></button>
+      </div>
+      <!-- Products to buy -->
+      <section class="shop-container">
+        <div class="sort-container">
+          <h2 class="shop-header">Shop</h2>
+            <label for="sort">Sort by:</label>
+            <select id="sort" class="sort-by">
+              <option value="name">Name</option>
+              <option value="price">Price</option>
+              <option value="category">Category</option>
+              <option value="rating">Rating</option>
+            </select>
+        </div>
+        <div id="shopContent" class="shop-content"></div>
+      </section>
+      
+          
+    </main>
     <!--JavaScript link-->
     <script src="script.js"></script>
   </body>
