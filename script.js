@@ -19,11 +19,11 @@ const products = [
     { name: "Santa Plate 3", category: "Plate", price: 80, rating: 4.7, 
       image: { url: "assets/images/Santa_plate3.avif.avif", width: 300, height: 300, alt: "Christmas plate with a red white border all around with Santa in the center of the plate. Around Santa there are Christmas decorations in the form of stars and deer." } },
     { name: "Gold Christmas Bauble", category: "Bauble", price: 50, rating: 4.4, 
-      image: { url: "assets/images/Gold_Christmas_bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a golden Christmas bauble hanging from a Christmas tree." } },
+      image: { url: "assets/images/Gold_Christmas_Bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a golden Christmas bauble hanging from a Christmas tree." } },
     { name: "Red Christmas Bauble", category: "Bauble", price: 300, rating: 4.9, 
-      image: { url: "assets/images/Red_Christmas_bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a red and white Christmas bauble hanging from a Christmas tree." } },
+      image: { url: "assets/images/Red_Christmas_Bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a red and white Christmas bauble hanging from a Christmas tree." } },
     { name: "Snowflake Christmas Bauble", category: "Bauble", price: 400, rating: 4.5, 
-      image: { url: "assets/images/Snowflake_Christmas_bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a snowflake Christmas bauble hanging from a Christmas tree." } },
+      image: { url: "assets/images/Snowflake_Christmas_Bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a snowflake Christmas bauble hanging from a Christmas tree." } },
   ];
 
 // Variables for total and count
@@ -102,7 +102,7 @@ function updateOverlay() {
             itemElement.className = 'cart-item';
 
             itemElement.innerHTML = `
-                <img src="${product.image.url}" alt="${product.image.alt}" class="cart-item-image">
+                <img src="${product.image.url}" alt="${product.image.alt}" class="cart-item-image" loading="lazy">
                 <p><strong>${item.name}</strong></p>
                 <p>Price for one: ${item.price} SEK</p>
                 <p>Quantity: ${item.quantity}</p>
@@ -169,7 +169,7 @@ function displayProducts(productsToDisplay) {
         productElement.className = "shop-item";
 
         productElement.innerHTML = `
-            <img src="${product.image.url}" alt="${product.image.alt}">
+            <img src="${product.image.url}" alt="${product.image.alt}" loading="lazy">
             <p>${product.name}</p>
             <p>${product.price} SEK</p>
             <p>Rating: ${product.rating}</p>
