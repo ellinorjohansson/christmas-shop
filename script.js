@@ -3,7 +3,7 @@ const products = [
     { name: "Christmas Tree 1", category: "Christmas Tree", price: 500, rating: 4.8, 
       image: { url: "assets/images/Christmas_tree1.avif.avif", width: 300, height: 300, alt: "Picture of a Christmas tree with snow over it in porcelain. In the background are more similar Christmas trees." } },
     { name: "Christmas Tree 2", category: "Christmas Tree", price: 100, rating: 4.5, 
-      image: { url: "assets/images/Christmas_tree2.avif.avif", width: 300, height: 3000, alt: "Picture of a Christmas tree with snow on it and a present under the tree, made in porcelain." } },
+      image: { url: "assets/images/Christmas_tree2.avif.avif", width: 300, height: 300, alt: "Picture of a Christmas tree with snow on it and a present under the tree, made in porcelain." } },
     { name: "Christmas Tree 3", category: "Christmas Tree", price: 200, rating: 4.7, 
       image: { url: "assets/images/Christmas_tree3.avif.avif", width: 300, height: 300, alt: "Picture of two Christmas trees with snow on them and are decorated in porcelain standing next to each other and under them is a glass box." } },
     { name: "Gingerbread 1", category: "Gingerbread", price: 300, rating: 4.3, 
@@ -54,12 +54,12 @@ function toggleCart() {
     }
 }
 
-// Open shopping cart on cart container click or Enter key press
+// Open shopping cart on cart container click or enter key press
 function setupCartListeners() {
     document.querySelector('#cart-container').addEventListener('click', toggleCart);
     document.querySelector('#close-cart').addEventListener('click', toggleCart);
 
-    // Open cart with Enter key
+    // Open cart with enter key
     document.querySelector('#cart-container').addEventListener('keydown', function(event) {
         if (event.key === 'Enter' || event.key === ' ') {
             toggleCart();
