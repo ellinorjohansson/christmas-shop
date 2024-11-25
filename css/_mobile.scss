@@ -134,25 +134,34 @@ form {
         background-color: rgb(198, 198, 198);
     }
     .error-message {
-        color: red;
+        color: $error-color;
         font-size: 0.9em;
         margin-top: 4px;
     } 
     .submit-btn {
-        background-color: #d3d3d3; 
-        color: white;
+        background-color: $submit-background-color; 
+        color: $secondary-text-color;
         border: none;
         padding: 10px 20px;
         font-size: 1rem;
         cursor: not-allowed; 
         transition: background-color 0.3s;
+        margin-bottom: 20px;
     }
     .submit-btn.active {
-        background-color: #4CAF50; 
+        background-color: $submit-background-color-secundary; 
         cursor: pointer; 
     }
     .submit-btn:hover.active {
-        background-color: #45a049; 
+        background-color: $submit-background-color-hover; 
+    }
+    .form-reset {
+        border: none;
+        font-size: 1rem;
+        padding: 10px 20px;
+        color: $secondary-text-color;
+        background-color: $reset-background-color;
+        margin-bottom: 20px;
     }
 }
 
