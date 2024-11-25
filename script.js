@@ -208,23 +208,14 @@ function sortProducts() {
     displayProducts(sortedProducts);
 }
 
-// Reset shopping cart
-function resetShop() {
-    document.getElementById('reset-btn').addEventListener('click', function() {
-        location.reload();
-    });
-}
-
 // Handle payment method selection and validation
 function handlePaymentMethodChange() {
     const paymentMethodSelector = document.getElementById('payment-method');
     const personalNumberContainer = document.getElementById('personal-number-container');
     const cardFields = document.getElementById('card-fields');
     const personalNumberInput = document.getElementById('personal-number');
-    const submitButton = document.getElementById('submit-form');
-    const form = document.querySelector('form');
 
-    // Card as default
+    // Default to card method
     paymentMethodSelector.value = 'card';
     cardFields.style.display = 'block';
     personalNumberContainer.style.display = 'none';
@@ -236,33 +227,74 @@ function handlePaymentMethodChange() {
         cardFields.style.display = isCard ? 'block' : 'none';
         personalNumberContainer.style.display = isCard ? 'none' : 'block';
         personalNumberInput.required = !isCard;  
-        validateForm();
     });
-
-    // Validation for personal number 
-    personalNumberInput.addEventListener('input', () => {
-        const regex = /^\d{8}-\d{4}$/;
-        if (!regex.test(personalNumberInput.value.trim())) {
-            personalNumberInput.setCustomValidity("Enter a valid social security number.");
-        } else {
-            personalNumberInput.setCustomValidity("");
-        }
-        validateForm();
-    });
-
-    // Form validation
-    function validateForm() {
-        const allValid = [...form.querySelectorAll('input:required')]
-            .every(input => input.checkValidity() && input.value.trim());
-        submitButton.disabled = !allValid;  
-        submitButton.style.opacity = allValid ? '1' : '0.5';  
-    }
-
-    form.addEventListener('input', validateForm);  
-    form.addEventListener('change', validateForm); 
 }
 
+//Validate form
+document.getElementById('submit-form').addEventListener('click', function (event) {
+    event.preventDefault();
 
+    const phone = document.getElementById('phone-input').value;
+    const email = document.getElementById('email-input').value;
+    const personalNumber = document.getElementById('personal-number').value;
+    const termsCheckbox = document.getElementById('terms-checkbox').checked;
+
+    const phoneError = document.getElementById('phone-error');
+    const emailError = document.getElementById('email-error');
+    const personalNumberError = document.getElementById('personal-number-error');
+    const termsError = document.getElementById('terms-error');
+
+    // To clear previous error message
+    phoneError.textContent = '';
+    emailError.textContent = '';
+    personalNumberError.textContent = '';
+    termsError.textContent = '';
+
+    let isValid = true;
+
+    // Validate phone number
+    const phoneRegex = /^[0-9]{10}$/;
+    if (!phoneRegex.test(phone)) {
+        phoneError.textContent = 'Invalid phone number! Enter 10 digit number.';
+        isValid = false;
+    }
+
+    // Validate mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        emailError.textContent = 'Invalid mail! Enter a correct email.';
+        isValid = false;
+    }
+
+    // Validate personal number
+    const personalNumberRegex = /^\d{6}-\d{4}$/;
+    if (!personalNumberRegex.test(personalNumber)) {
+        personalNumberError.textContent = 'Invalid personal number! Enter in the format: YYMMDD-XXXX.';
+        isValid = false;
+    }
+
+    // Validate Terms and Conditions checkbox
+    if (!termsCheckbox) {
+        termsError.textContent = 'You must agree to the Terms and Conditions.';
+        isValid = false;
+    }
+
+    // If everything is correct, send form
+    if (isValid) {
+        document.querySelector('form').submit();
+    }
+});
+
+  
+
+
+
+// Reset shopping cart
+function resetShop() {
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        location.reload();
+    });
+}
 
 // Toggle between dark and light mode
 function toggleTheme() {

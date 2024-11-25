@@ -87,11 +87,13 @@
           </label>
           <label>
             <span class="input-header">Phone Number</span>
-            <input type="number" name="Phone" required>
+            <input id="phone-input" type="number" name="Phone" required>
+            <span class="error-message" id="phone-error"></span>
           </label>
           <label>
             <span class="input-header">Email Address</span>
-            <input type="email" name="Email" required>
+            <input id="email-input" type="email" name="Email" required>
+            <span class="error-message" id="email-error"></span>
           </label>
 
           <!-- Payment Options -->
@@ -99,20 +101,21 @@
             <span class="input-header">Payment Method</span>
             <select id="payment-method" name="PaymentMethod">
               <option value="card">Credit Card</option>
-              <option value="invoice">Invoice</option>
+              <option value="invoice">Personal Number</option>
             </select>
           </label>
 
           <!-- Swedish Personal Number -->
-          <div id="personal-number-container" style="display: none;">
+          <div id="personal-number-container">
             <label>
               <span class="input-header">Swedish Personal Number</span>
               <input type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" required>
+              <span class="error-message" id="personal-number-error"></span>
             </label>
           </div>
 
           <!-- Credit Card Fields -->
-          <div id="card-fields" style="display: none;">
+          <div id="card-fields">
             <label>
               <span class="input-header">Card Number</span>
               <input type="text" name="CardNumber" placeholder="**** **** **** ****">
@@ -130,7 +133,8 @@
           <!-- Checkbox for terms -->
           <label class="checkbox">
             <span>I agree to the <a href="#">terms and conditions</a></span>
-            <input type="checkbox" name="PrivacyPolicy" class="check-terms" required>
+            <input id="terms-checkbox" type="checkbox" name="PrivacyPolicy" class="check-terms" required>
+            <span class="error-message" id="terms-error"></span>
           </label>
 
           <!-- Newsletter Checkbox -->
@@ -147,11 +151,9 @@
 
           <!-- Buttons -->
           <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
-          <button type="submit" id="submit-form" class="submit-btn" disabled>Place Order</button>
+          <button type="submit" id="submit-form" class="submit-btn">Place Order</button>
         </form>
       </div>
-
-
 
       <!--Dark/Light mode-->
       <div class="btn-place">
@@ -161,6 +163,7 @@
                 </span>
             </span></button>
       </div>
+
       <!-- Products to buy -->
       <section class="shop-container">
         <div class="sort-container">
@@ -174,8 +177,7 @@
             </select>
         </div>
         <div id="shopContent" class="shop-content"></div>
-      </section>
-      
+      </section> 
           
     </main>
     <!--JavaScript link-->

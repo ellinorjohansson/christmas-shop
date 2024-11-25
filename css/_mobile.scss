@@ -133,6 +133,11 @@ form {
     select {
         background-color: rgb(198, 198, 198);
     }
+    .error-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 4px;
+    }    
 }
 
 //Dark/Light switch
