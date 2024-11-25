@@ -230,62 +230,94 @@ function handlePaymentMethodChange() {
     });
 }
 
-//Validate form
-document.getElementById('submit-form').addEventListener('click', function (event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', function () {
+    const phoneInput = document.getElementById('phone-input');
+    const emailInput = document.getElementById('email-input');
+    const personalNumberInput = document.getElementById('personal-number');
+    const termsCheckbox = document.getElementById('terms-checkbox');
 
-    const phone = document.getElementById('phone-input').value;
-    const email = document.getElementById('email-input').value;
-    const personalNumber = document.getElementById('personal-number').value;
-    const termsCheckbox = document.getElementById('terms-checkbox').checked;
-
+    const submitButton = document.getElementById('submit-form');
     const phoneError = document.getElementById('phone-error');
     const emailError = document.getElementById('email-error');
     const personalNumberError = document.getElementById('personal-number-error');
     const termsError = document.getElementById('terms-error');
 
-    // To clear previous error message
-    phoneError.textContent = '';
-    emailError.textContent = '';
-    personalNumberError.textContent = '';
-    termsError.textContent = '';
+    phoneError.style.display = 'none';
+    emailError.style.display = 'none';
+    personalNumberError.style.display = 'none';
+    termsError.style.display = 'none';
 
-    let isValid = true;
+    // Function to control if the form is valid
+    function validateForm() {
+        let isValid = true;
 
-    // Validate phone number
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phoneRegex.test(phone)) {
-        phoneError.textContent = 'Invalid phone number! Enter 10 digit number.';
-        isValid = false;
+        // Clean error message
+        phoneError.textContent = '';
+        emailError.textContent = '';
+        personalNumberError.textContent = '';
+        termsError.textContent = '';
+
+        // Validate phone number
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(phoneInput.value)) {
+            phoneError.textContent = 'Invalid phone number!';
+            phoneError.style.display = 'block'; 
+            isValid = false;
+        }
+
+        // Validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+            emailError.textContent = 'Invalid mail! Enter a correct mail.';
+            emailError.style.display = 'block'; 
+            isValid = false;
+        }
+
+         // Check if card is selected and skip personal number validation if card is selected
+        const isCardSelected = document.getElementById('payment-method').value === 'card';
+        if (!isCardSelected) {
+         const personalNumberRegex = /^\d{6}-\d{4}$/;
+            if (!personalNumberRegex.test(personalNumberInput.value)) {
+                personalNumberError.textContent = 'Invalid personal number! Enter in: YYMMDD-XXXX.';
+                personalNumberError.style.display = 'block'; 
+                isValid = false;
+        }
     }
 
-    // Validate mail
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        emailError.textContent = 'Invalid mail! Enter a correct email.';
-        isValid = false;
+        // Validate terms and condition
+        if (!termsCheckbox.checked) {
+            termsError.textContent = 'You must accept the terms.';
+            termsError.style.display = 'block'; 
+            isValid = false;
+        }
+
+        // Update submit button
+        if (isValid) {
+            submitButton.classList.add('active');  
+        } else {
+            submitButton.classList.remove('active');  
+        }
     }
 
-    // Validate personal number
-    const personalNumberRegex = /^\d{6}-\d{4}$/;
-    if (!personalNumberRegex.test(personalNumber)) {
-        personalNumberError.textContent = 'Invalid personal number! Enter in the format: YYMMDD-XXXX.';
-        isValid = false;
-    }
+    // Event listener on every input of form
+    phoneInput.addEventListener('input', validateForm);
+    emailInput.addEventListener('input', validateForm);
+    personalNumberInput.addEventListener('input', validateForm);
+    termsCheckbox.addEventListener('change', validateForm);
 
-    // Validate Terms and Conditions checkbox
-    if (!termsCheckbox) {
-        termsError.textContent = 'You must agree to the Terms and Conditions.';
-        isValid = false;
-    }
+    // When the user click on 'place order', validate and show if there is error
+    submitButton.addEventListener('click', function (event) {
+        event.preventDefault();  
 
-    // If everything is correct, send form
-    if (isValid) {
-        document.querySelector('form').submit();
-    }
+        validateForm();
+
+        // If form is correct, submit
+        if (submitButton.classList.contains('active')) {
+            document.querySelector('form').submit();
+        }
+    });
 });
 
-  
 
 
 
