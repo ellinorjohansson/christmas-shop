@@ -32,10 +32,21 @@ let cartTotal = 0;
 let cartItems = [];
 
 // Update cart total and count in HTML header
+const originalColor = '#faebd7';
 function updateCart() {
     document.querySelector('#cart-count').innerText = cartCount;
     document.querySelector('#cart-total').innerText = cartTotal + " SEK";
     document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
+    document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
+    const cartTotalHeader = document.querySelector('#cart-total-header');
+    
+    // Change color on total in header when products add
+    cartTotalHeader.style.color = '#381212';
+    
+    setTimeout(function() {
+        cartTotalHeader.style.color = originalColor; 
+    }, 1000); 
+
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
 
