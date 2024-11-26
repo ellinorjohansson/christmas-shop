@@ -39,7 +39,6 @@ function updateCart() {
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
 
-
 // Toggle shopping cart visibility
 function toggleCart() {
     const cartOverlay = document.querySelector('#cart-overlay');
@@ -89,7 +88,7 @@ function addItemToCart(name, price, quantity) {
     updateOverlay();
 }
 
-//What you want to shop that views in overlay
+//What you want to buy that views in overlay
 function updateOverlay() {
     const cartDetails = document.querySelector('#cart-details');
     cartDetails.innerHTML = "";
@@ -114,7 +113,54 @@ function updateOverlay() {
     });
 }
 
+// Display all products
+function displayProducts(productsToDisplay) {
+    const shopContent = document.querySelector("#shopContent");
+    shopContent.innerHTML = ""; // Clear content
 
+    productsToDisplay.forEach(product => {
+        const productElement = document.createElement("div");
+        productElement.className = "shop-item";
+
+        productElement.innerHTML = `
+            <img src="${product.image.url}" alt="${product.image.alt}" loading="lazy">
+            <p>${product.name}</p>
+            <p>${product.price} SEK</p>
+            <div class="rating">${generateStar(product.rating)}</div>
+            <p>${product.category}</p>
+            <div class="quantity-controls">
+                <button class="decrease" data-price="${product.price}" data-name="${product.name}">-</button>
+                <span class="quantity" data-name="${product.name}">0</span>
+                <button class="increase" data-price="${product.price}" data-name="${product.name}">+</button>
+            </div>
+            <button class="add-item" data-price="${product.price}" data-name="${product.name}">Add product</button>
+        `;
+        shopContent.appendChild(productElement);
+    });
+
+    updateProductQuantity();
+    setupAddToCartButtons();
+}
+
+// Handle product sorting
+function sortProducts() {
+    const sortBy = document.getElementById("sort").value;
+    let sortedProducts = [...products];
+
+    sortedProducts.sort((a, b) => {
+        if (sortBy === "price") {
+            return a.price - b.price;
+        } else if (sortBy === "name") {
+            return a.name.localeCompare(b.name);
+        } else if (sortBy === "category") {
+            return a.category.localeCompare(b.category);
+        } else if (sortBy === "rating") {
+            return b.rating - a.rating;
+        }
+    });
+
+    displayProducts(sortedProducts);
+}
 
 // Handle product quantity increase/decrease
 function updateProductQuantity() {
@@ -169,56 +215,6 @@ function generateStar(rating) {
         }
     }
     return stars;
-}
-
-
-// Display all products
-function displayProducts(productsToDisplay) {
-    const shopContent = document.querySelector("#shopContent");
-    shopContent.innerHTML = ""; // Clear content
-
-    productsToDisplay.forEach(product => {
-        const productElement = document.createElement("div");
-        productElement.className = "shop-item";
-
-        productElement.innerHTML = `
-            <img src="${product.image.url}" alt="${product.image.alt}" loading="lazy">
-            <p>${product.name}</p>
-            <p>${product.price} SEK</p>
-            <div class="rating">${generateStar(product.rating)}</div>
-            <p>${product.category}</p>
-            <div class="quantity-controls">
-                <button class="decrease" data-price="${product.price}" data-name="${product.name}">-</button>
-                <span class="quantity" data-name="${product.name}">0</span>
-                <button class="increase" data-price="${product.price}" data-name="${product.name}">+</button>
-            </div>
-            <button class="add-item" data-price="${product.price}" data-name="${product.name}">Add product</button>
-        `;
-        shopContent.appendChild(productElement);
-    });
-
-    updateProductQuantity();
-    setupAddToCartButtons();
-}
-
-// Handle product sorting
-function sortProducts() {
-    const sortBy = document.getElementById("sort").value;
-    let sortedProducts = [...products];
-
-    sortedProducts.sort((a, b) => {
-        if (sortBy === "price") {
-            return a.price - b.price;
-        } else if (sortBy === "name") {
-            return a.name.localeCompare(b.name);
-        } else if (sortBy === "category") {
-            return a.category.localeCompare(b.category);
-        } else if (sortBy === "rating") {
-            return b.rating - a.rating;
-        }
-    });
-
-    displayProducts(sortedProducts);
 }
 
 // Handle payment method selection and validation
@@ -330,9 +326,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
-
 
 // Reset shopping cart
 function resetShop() {
