@@ -133,6 +133,10 @@ form {
     select {
         background-color: rgb(198, 198, 198);
     }
+    .checkbox {
+        display: flex;
+        margin: 0;
+    }
     .error-message {
         color: $error-color;
         font-size: 0.9em;
@@ -162,10 +166,11 @@ form {
         color: $secondary-text-color;
         background-color: $reset-background-color;
         margin-bottom: 20px;
+        cursor: pointer;
     }
 }
 
-//Dark/Light switch
+//Dark / Light switch
 .btn-place {
     display: flex;
     justify-content: flex-end;
@@ -212,6 +217,14 @@ main {
     .add-item {
         margin-top: 10px;
         padding: 5px;
+    } 
+    .rating-star {
+        color: $marker-color;
+        font-weight: 900;
+    }
+    .rating-star-empty {
+        font-size: 0.8rem;
+        color: $marker-color;
     }
 }
 
