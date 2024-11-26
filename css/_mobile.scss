@@ -100,6 +100,12 @@ body.overlay-open {
         height: 150px;
         object-fit: cover;
     }
+    .cart-overlay-total {
+        font-weight: bold;
+    }
+    .price-count-overlay {
+        border-top: 2px solid $overlay-border;
+    }
 }
 
 form {

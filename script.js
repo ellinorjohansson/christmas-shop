@@ -31,7 +31,7 @@ let cartCount = 0;
 let cartTotal = 0;
 let cartItems = [];
 
-// Update cart total and count in HTML
+// Update cart total and count in HTML header
 function updateCart() {
     document.querySelector('#cart-count').innerText = cartCount;
     document.querySelector('#cart-total').innerText = cartTotal + " SEK";
@@ -88,7 +88,7 @@ function addItemToCart(name, price, quantity) {
     updateOverlay();
 }
 
-//What you want to buy that views in overlay
+//Things you want to buy that views in overlay
 function updateOverlay() {
     const cartDetails = document.querySelector('#cart-details');
     cartDetails.innerHTML = "";
