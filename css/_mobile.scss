@@ -203,6 +203,7 @@ main {
     .sort-by {
         padding: 2px;
         border-radius: 5px;
+        cursor: pointer;
     }
 }
 
@@ -220,6 +221,7 @@ main {
     .add-item {
         margin-top: 10px;
         padding: 5px;
+        font-family: $secondary-font;
     } 
     .rating-star {
         color: $marker-color;
