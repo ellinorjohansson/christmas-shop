@@ -166,15 +166,15 @@ function sortProducts() {
     const sortBy = document.getElementById("sort").value;
     let sortedProducts = [...products];
 
-    sortedProducts.sort((a, b) => {
+    sortedProducts.sort((product1, product2) => {
         if (sortBy === "price") {
-            return a.price - b.price;
+            return product1.price - product2.price;
         } else if (sortBy === "name") {
-            return a.name.localeCompare(b.name);
+            return product1.name.localeCompare(product2.name);
         } else if (sortBy === "category") {
-            return a.category.localeCompare(b.category);
+            return product1.category.localeCompare(product2.category);
         } else if (sortBy === "rating") {
-            return b.rating - a.rating;
+            return product1.rating - product2.rating;
         }
     });
 
