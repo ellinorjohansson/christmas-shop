@@ -177,16 +177,42 @@ form {
     }
 }
 
-//Dark Light switch
-.btn-place {
+.background-container {
+    background-image: url("/assets/images/Home_background.avif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
     display: flex;
-    justify-content: flex-end;
-    margin-top: 80px;
-    margin-right: 20px;
-    .btn {
-        padding: 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    .welcome-text {
+        font-family: $secondary-font;
+        font-size: 3rem;
+    }
+    .timeforshopping-button {
+        font-family: $secondary-font;
+        padding: 8px;
         border-radius: 20px;
         cursor: pointer;
+        .arrow {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    //Dark Light switch
+    .btn-place {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+        .btn {
+            padding: 10px 15px 10px 15px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
     }
 }
 
