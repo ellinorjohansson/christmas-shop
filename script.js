@@ -49,11 +49,11 @@ function updateCart() {
     const cartTotalHeader = document.querySelector('#cart-total-header');
     
     // Change color on total in header when products add
-    cartTotalHeader.style.color = '#381212';
+    cartTotalHeader.style.color = '#752922';
     
     setTimeout(function() {
         cartTotalHeader.style.color = originalColor; 
-    }, 1000); 
+    }, 500); 
 
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
