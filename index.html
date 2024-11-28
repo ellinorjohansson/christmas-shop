@@ -36,11 +36,11 @@
           <div class="cart-summary">
               <span class="style-total-header" id="cart-total-header"></span>
           </div>
-          <i class="cart-shopping-icon" tabindex="0">
+          <button class="cart-shopping-icon">
               <span class="material-symbols-outlined shopping-icon">
                   shopping_cart
               </span>
-          </i>
+            </button>
           <div class="cart-icon" id="cart-icon">
               <span class="cart-count-style" id="cart-count"></span>
           </div>
@@ -51,9 +51,9 @@
       <div class="cart-overlay" id="cart-overlay">
         <div class="cart-content">
           <!-- Close btn for shopping cart -->
-          <span class="close-btn" id="close-cart"><span class="material-symbols-outlined">
+          <button class="close-btn" id="close-cart"><span class="material-symbols-outlined">
                   close
-              </span></span>
+              </span></button>
           <h2>Your shopping cart</h2>
           <div id="cart-details"></div>
           <div class="price-count-overlay">
@@ -158,21 +158,25 @@
       </div>
 
       <section class="background-container">
-        <h2 class="welcome-text">Welcome!</h2>
-        <button class="timeforshopping-button">Time for shopping! <span class="material-symbols-outlined arrow">
-          arrow_downward
-          </span></button>
-        <div class="btn-place">
-          <button class="btn"><span class="material-symbols-outlined">
-                  light_mode <span class="material-symbols-outlined">
-                      dark_mode
-                  </span>
+        <div class="start-content">
+          <h2 class="welcome-text">Welcome!</h2>
+          <a href="#shop-scroll">
+            <button class="timeforshopping-button">Time for shopping! <span class="material-symbols-outlined arrow">
+              arrow_downward
               </span></button>
+          </a>
+          <div class="btn-place">
+            <button class="btn"><span class="material-symbols-outlined">
+                    light_mode <span class="material-symbols-outlined">
+                        dark_mode
+                    </span>
+                </span></button>
+          </div>
         </div>
       </section>
 
       <!-- Products to buy -->
-      <section class="shop-container">
+      <section class="shop-container" id="shop-scroll">
         <div class="sort-container">
           <h2 class="shop-header">Shop</h2>
             <label for="sort">Sort by:</label>

@@ -1,3 +1,15 @@
+.start-content {
+    margin-right: 800px;
+    text-align: left;
+    .welcome-text {
+        font-size: 4.5rem;
+    }
+    .btn-place {
+        display: flex;
+        justify-content: left;
+    }
+}
+
 .shop-content {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

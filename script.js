@@ -31,14 +31,6 @@ let cartCount = 0;
 let cartTotal = 0;
 let cartItems = [];
 
-
-
-
-
-
-//!!! --->  Osäker på om det är okej att göra såhär för att ändra total summan i headern eller om jag på något sätt ska lägga style i scss?  <----
-
-
 // Update cart total and count in HTML header
 const originalColor = '#faebd7';
 function updateCart() {
@@ -76,13 +68,6 @@ function toggleCart() {
 function setupCartListeners() {
     document.querySelector('#cart-container').addEventListener('click', toggleCart);
     document.querySelector('#close-cart').addEventListener('click', toggleCart);
-
-    // Open cart with enter key
-    document.querySelector('#cart-container').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            toggleCart();
-        }
-    });
 }
 
 // Handle adding product to cart

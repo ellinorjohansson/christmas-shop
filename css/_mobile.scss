@@ -59,10 +59,14 @@ header {
 
 .cart-shopping-icon {
     cursor: pointer;
+    background: none;
+    border: none;
 }
 
 .shopping-icon {
     font-size: 2rem;
+    background: none;
+    color: $secondary-text-color;
 }
 
 body.overlay-open {
@@ -95,6 +99,8 @@ body.overlay-open {
         cursor: pointer;
         font-size: 1.5rem;
         color: $text-color;
+        border: none;
+        background: none;
     }
     .cart-item-image {
         width: 150px;
@@ -177,6 +183,10 @@ form {
     }
 }
 
+main {
+    font-family: $secondary-font;
+}
+
 .background-container {
     background-image: url("/assets/images/Home_background.avif");
     background-size: cover;
@@ -188,7 +198,6 @@ form {
     align-items: center;
     text-align: center;
     color: white;
-    position: relative;
     .welcome-text {
         font-family: $secondary-font;
         font-size: 3rem;
@@ -206,8 +215,8 @@ form {
     //Dark Light switch
     .btn-place {
         display: flex;
-        justify-content: flex-end;
         margin-top: 20px;
+        justify-content: center;
         .btn {
             padding: 10px 15px 10px 15px;
             border-radius: 30px;
@@ -219,10 +228,6 @@ form {
 .dark-theme {
     background-color: $secondary-color;
     color: $secondary-text-color;
-}
-
-main {
-    font-family: $secondary-font;
 }
 
 .shop-container {
