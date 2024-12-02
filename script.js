@@ -329,6 +329,16 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('form').submit();
         }
     });
+    
+    displayProducts(products);
+    setupCartListeners();
+    resetShop();
+    toggleTheme();
+    handlePaymentMethodChange();
+
+    document.getElementById("sort").addEventListener("change", sortProducts);
+
+    updateCart();
 });
 
 // Reset shopping cart
@@ -353,16 +363,3 @@ function toggleTheme() {
         }
     });
 }
-
-// Initialize shop
-document.addEventListener("DOMContentLoaded", () => {
-    displayProducts(products);
-    setupCartListeners();
-    resetShop();
-    toggleTheme();
-    handlePaymentMethodChange();
-
-    document.getElementById("sort").addEventListener("change", sortProducts);
-
-    updateCart();
-});
