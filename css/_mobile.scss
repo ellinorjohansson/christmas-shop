@@ -208,12 +208,14 @@ main {
     .welcome-text {
         font-family: $secondary-font;
         font-size: 3rem;
+        color: $secondary-text-color;
     }
     .timeforshopping-button {
         font-family: $secondary-font;
         padding: 8px;
         border-radius: 20px;
         cursor: pointer;
+        background-color: $background-button-color;
         .arrow {
             display: inline-block;
             vertical-align: middle;
