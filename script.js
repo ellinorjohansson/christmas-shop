@@ -273,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Validate phone number
         const phoneRegex = /^[0-9]{10}$/;
         if (!phoneRegex.test(phoneInput.value)) {
-            phoneError.textContent = 'Invalid phone number!';
+            phoneError.innerHTML = '<span class="material-symbols-outlined">error</span> Invalid phone number!';
             phoneError.style.display = 'block'; 
             isValid = false;
         }
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Validate email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(emailInput.value)) {
-            emailError.textContent = 'Invalid mail! Enter a correct mail.';
+            emailError.innerHTML = '<span class="material-symbols-outlined">error</span> Invalid mail! Enter a correct mail.';
             emailError.style.display = 'block'; 
             isValid = false;
         }
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isCardSelected) {
          const personalNumberRegex = /^\d{6}-\d{4}$/;
             if (!personalNumberRegex.test(personalNumberInput.value)) {
-                personalNumberError.textContent = 'Invalid personal number! Enter in: YYMMDD-XXXX.';
+                personalNumberError.innerHTML = '<span class="material-symbols-outlined">error</span> Invalid personal number! Enter in: YYMMDD-XXXX.';
                 personalNumberError.style.display = 'block'; 
                 isValid = false;
         }
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Validate terms and condition
         if (!termsCheckbox.checked) {
-            termsError.textContent = 'You must accept the terms.';
+            termsError.innerHTML = '<span class="material-symbols-outlined">error</span> You must accept the terms.';
             termsError.style.display = 'block'; 
             isValid = false;
         }
@@ -340,6 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateCart();
 });
+
 
 // Reset shopping cart
 function resetShop() {

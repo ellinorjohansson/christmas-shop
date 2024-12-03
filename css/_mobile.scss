@@ -190,6 +190,13 @@ form {
     }
 }
 
+.hidden-confirmation {
+    display: none;
+}
+.close-confirmation {
+    margin-bottom: 30px;
+}
+
 main {
     font-family: $secondary-font;
 }
