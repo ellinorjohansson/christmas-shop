@@ -83,7 +83,6 @@ body.overlay-open {
     height: 100%;
     background: rgba(0,0,0,0.8);
     z-index: 1000;
-    color: $background-color;
     padding: 20px;
     overflow-y: auto;
     .cart-content {
@@ -285,6 +284,17 @@ main {
 .dark-theme {
     background-color: $secondary-color;
     color: $secondary-text-color;
+    .cart-content {
+        background-color: $secondary-color;
+        color: $secondary-text-color;
+    }
+    .close-btn {
+        color: $secondary-text-color;
+    }
+    form {
+        background-color: $secondary-color;
+        color: $secondary-text-color;
+    }
 }
 
 .shop-container {
