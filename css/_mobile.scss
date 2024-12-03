@@ -270,6 +270,12 @@ main {
             padding: 10px 15px 10px 15px;
             border-radius: 30px;
             cursor: pointer;
+            background-color: $background-button-color;
+            border: none;
+            color: $secondary-text-color;
+            &:hover {
+                background-color: $secondary-background-button-color;
+            }
         }
     }
 }
