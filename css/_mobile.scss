@@ -247,13 +247,18 @@ main {
     }
     .timeforshopping-button {
         font-family: $secondary-font;
-        padding: 8px;
+        padding: 10px 12px 10px 12px;
         border-radius: 20px;
+        border: none;
         cursor: pointer;
         background-color: $background-button-color;
+        color: $secondary-text-color;
         .arrow {
             display: inline-block;
             vertical-align: middle;
+        }
+        &:hover {
+            background-color: $secondary-background-button-color;
         }
     }
     //Dark Light switch
