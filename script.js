@@ -250,6 +250,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const termsCheckbox = document.getElementById('terms-checkbox');
 
     const submitButton = document.getElementById('submit-form');
+    const orderConfirmation = document.getElementById('order-confirmation');
+    const closeConfirmation = document.getElementById('close-confirmation');
     const phoneError = document.getElementById('phone-error');
     const emailError = document.getElementById('email-error');
     const personalNumberError = document.getElementById('personal-number-error');
@@ -320,14 +322,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // When the user click on 'place order', validate and show if there is error
     submitButton.addEventListener('click', function (event) {
-        event.preventDefault();  
-
+        event.preventDefault(); 
+    
         validateForm();
-
-        // If form is correct, submit
+    
         if (submitButton.classList.contains('active')) {
-            document.querySelector('form').submit();
+            orderConfirmation.style.display = 'flex'; 
         }
+    });
+
+    closeConfirmation.addEventListener('click', function () {
+        location.reload(); 
     });
     
     displayProducts(products);
@@ -340,7 +345,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateCart();
 });
-
 
 // Reset shopping cart
 function resetShop() {
