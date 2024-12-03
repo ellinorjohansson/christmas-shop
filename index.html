@@ -47,7 +47,7 @@
     </header>
 
     <main>
-      <div class="cart-overlay" id="cart-overlay">
+      <aside class="cart-overlay" id="cart-overlay">
         <div class="cart-content">
           <!-- Close btn for shopping cart -->
           <button class="close-btn" id="close-cart"><span class="material-symbols-outlined">
@@ -102,7 +102,7 @@
             <span class="input-header">Payment Method</span>
             <select id="payment-method" name="PaymentMethod">
               <option class="input-form" value="card">Credit Card</option>
-              <option class="input-form" value="invoice">Personal Number</option>
+              <option class="input-form" value="invoice">Invoice</option>
             </select>
           </label>
 
@@ -154,23 +154,21 @@
           <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
           <button type="submit" id="submit-form" class="submit-btn">Place Order</button>
         </form>
-      </div>
+      </aside>
 
-      <div id="order-confirmation" class="style-confirmation">
+      <aside id="order-confirmation" class="style-confirmation">
         <h2 class="confirmation-text">Your order has been placed successfully!</h2>
         <p class="confirmation-text">Thank you for shopping with us. You will receive your confirmation email shortly.</p>
         <button class="confirmation-close-style" id="close-confirmation">Close</button>
-      </div>
+      </aside>
     
 
       <section class="background-container">
         <div class="start-content">
           <h2 class="welcome-text">Welcome!</h2>
-          <a href="#shop-scroll">
-            <button class="timeforshopping-button">Time for shopping! <span class="material-symbols-outlined arrow">
-              arrow_downward
-              </span></button>
-          </a>
+          <button class="timeforshopping-button" id="shop-button">Time for shopping! <span class="material-symbols-outlined arrow">
+            arrow_downward
+            </span></button>
           <div class="btn-place">
             <button class="btn"><span class="material-symbols-outlined">
                     light_mode <span class="material-symbols-outlined">
@@ -193,7 +191,9 @@
               <option value="rating">Rating</option>
             </select>
         </div>
-        <div id="shopContent" class="shop-content"></div>
+        <div id="shopContent" class="shop-content">
+          <div id="shop-items"></div>
+        </div>
       </section> 
     </main>
 

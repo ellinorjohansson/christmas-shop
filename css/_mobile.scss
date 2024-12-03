@@ -112,6 +112,10 @@ body.overlay-open {
     .price-count-overlay {
         border-top: 2px solid $overlay-border;
     }
+    .remove-style {
+        margin-bottom: 10px;
+        border-radius: 20px;
+    }
 }
 
 form {

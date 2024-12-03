@@ -110,10 +110,40 @@ function updateOverlay() {
                 <p>Price for one: ${item.price} SEK</p>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Total: ${item.totalPrice} SEK</p>
+                <button class="remove-item remove-style" data-name="${item.name}">Remove</button>
             `;
 
             cartDetails.appendChild(itemElement);
         }
+    });
+    setupRemoveButtons();
+}
+
+//Remove button in overlay for every product
+function removeItemFromCart(name) {
+    const itemIndex = cartItems.findIndex(item => item.name === name);
+
+    if (itemIndex > -1) {
+        const item = cartItems[itemIndex];
+
+        cartCount -= item.quantity;
+        cartTotal -= item.totalPrice;
+
+        cartItems.splice(itemIndex, 1);
+
+        updateCart();
+        updateOverlay();
+    }
+}
+
+function setupRemoveButtons() {
+    const removeButtons = document.querySelectorAll('.remove-item');
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const productName = button.getAttribute('data-name');
+            removeItemFromCart(productName);
+        });
     });
 }
 
@@ -134,7 +164,7 @@ function displayProducts(productsToDisplay) {
             <p>${product.category}</p>
             <div class="quantity-controls">
                 <button class="decrease" data-price="${product.price}" data-name="${product.name}">-</button>
-                <span class="quantity" data-name="${product.name}">0</span>
+                <span class="quantity" data-name="${product.name}">1</span>
                 <button class="increase" data-price="${product.price}" data-name="${product.name}">+</button>
             </div>
             <button class="add-item" data-price="${product.price}" data-name="${product.name}">Add product</button>
@@ -183,7 +213,7 @@ function updateProductQuantity() {
         button.addEventListener('click', function () {
             const quantitySpan = document.querySelector(`.quantity[data-name="${button.getAttribute('data-name')}"]`);
             let currentQuantity = parseInt(quantitySpan.innerText);
-            if (currentQuantity > 0) {
+            if (currentQuantity > 1) {
                 quantitySpan.innerText = currentQuantity - 1;
             }
         });
@@ -202,7 +232,7 @@ function setupAddToCartButtons() {
 
             if (quantity > 0) {
                 addItemToCart(productName, price, quantity); 
-                quantitySpan.innerText = 0; 
+                quantitySpan.innerText = 1; 
             }
         });
     });
@@ -350,7 +380,9 @@ document.addEventListener('DOMContentLoaded', function () {
 // Reset shopping cart
 function resetShop() {
     document.getElementById('reset-btn').addEventListener('click', function() {
+        if (confirm("Are you sure you want to reset your order?")) {
         location.reload();
+        }
     });
 }
 
@@ -369,3 +401,11 @@ function toggleTheme() {
         }
     });
 }
+
+document.getElementById("shop-button").addEventListener("click", function () {
+    const target = document.getElementById("shopContent");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+  
