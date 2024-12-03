@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault(); 
     
         validateForm();
-    
+        //Show order confirmation
         if (submitButton.classList.contains('active')) {
             orderConfirmation.style.display = 'flex'; 
         }
@@ -334,6 +334,7 @@ document.addEventListener('DOMContentLoaded', function () {
     closeConfirmation.addEventListener('click', function () {
         location.reload(); 
     });
+    
     
     displayProducts(products);
     setupCartListeners();

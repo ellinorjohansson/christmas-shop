@@ -210,15 +210,17 @@ form {
         font-size: 1.5rem;
     }
     .confirmation-close-style {
-        background-color: #ff4d4d;
+        background-color: $background-button-color;
         color: white;
         border: none;
-        padding: 0.8rem 1.5rem;
+        padding: 13px 15px;
         font-size: 1rem;
+        font-family: $secondary-font;
+        margin-top: 25px;
         cursor: pointer;
         border-radius: 5px;
         &:hover {
-         background-color: #ff3333;
+         background-color: $secondary-background-button-color;
 
         }
     }
