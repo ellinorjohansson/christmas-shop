@@ -110,7 +110,7 @@ function updateOverlay() {
                 <p>Price for one: ${item.price} SEK</p>
                 <p>Quantity: ${item.quantity}</p>
                 <p>Total: ${item.totalPrice} SEK</p>
-                <button class="remove-item remove-style" data-name="${item.name}">Remove</button>
+                <button class="remove-item" data-name="${item.name}">Remove</button>
             `;
 
             cartDetails.appendChild(itemElement);
