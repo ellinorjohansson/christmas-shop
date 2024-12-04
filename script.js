@@ -98,12 +98,42 @@ function addItemToCart(name, price, quantity) {
         });
     }
 
+    // Update cart count and total
     cartCount += quantity;
     cartTotal += price * quantity;
+
+    applyDiscountToCart();
 
     updateCart();
     updateOverlay();
 }
+
+function applyDiscountToCart() {
+    let discountApplied = false;  
+
+    cartItems.forEach(item => {
+        // Apply 10% discount if quantity is 10 or more
+        if (item.quantity >= 10) {
+            item.totalPrice = item.quantity * item.price * 0.9;  // 10% discount
+            discountApplied = true;  
+        } else {
+            item.totalPrice = item.quantity * item.price; 
+        }
+    });
+
+    // Visa eller göm discount-meddelandet baserat på flaggan
+    const discountMessage = document.getElementById('discount-message');
+    if (discountApplied) {
+        discountMessage.style.display = 'block'; 
+    } else {
+        discountMessage.style.display = 'none';  
+    }
+
+    // Recalculate the total price after discounts
+    cartTotal = cartItems.reduce((total, item) => total + item.totalPrice, 0);
+}
+
+
 
 
 //Things you want to buy that views in overlay
@@ -111,9 +141,7 @@ function updateOverlay() {
     const cartDetails = document.querySelector('#cart-details');
     cartDetails.innerHTML = "";
 
-    const isWeekend = isWeekendSurge();  // Check if it's during the weekend
-
-    let totalCartPrice = 0;  
+    let totalCartPrice = 0;
 
     cartItems.forEach(item => {
         const product = products.find(product => product.name === item.name);
@@ -122,13 +150,9 @@ function updateOverlay() {
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
 
-            let displayedPrice = item.price;
-            if (isWeekend) {
-                displayedPrice = item.price * 1.15; 
-            }
-
+            const displayedPrice = item.discountedPrice || item.price;
             const itemTotalPrice = displayedPrice * item.quantity;
-            totalCartPrice += itemTotalPrice;  
+            totalCartPrice += itemTotalPrice;
 
             itemElement.innerHTML = `
                 <img src="${product.image.url}" alt="${product.image.alt}" class="cart-item-image" loading="lazy">
@@ -143,7 +167,6 @@ function updateOverlay() {
         }
     });
 
-    // Update total cart price in overlay after applying the weekend surcharge
     const cartTotalElement = document.querySelector('#cart-total-overlay');
     if (cartTotalElement) {
         cartTotalElement.innerText = "Total: " + totalCartPrice.toFixed(2) + " SEK"; 
@@ -151,6 +174,7 @@ function updateOverlay() {
 
     setupRemoveButtons();
 }
+
 
 //Remove button in overlay for every product
 function removeItemFromCart(name) {
