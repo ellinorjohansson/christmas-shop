@@ -59,9 +59,9 @@ function updateCart() {
     }, 500); 
 
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
+
+    handlePaymentMethodChange();
 }
-
-
 
 // Toggle shopping cart visibility
 function toggleCart() {
@@ -151,9 +151,6 @@ function updateOverlay() {
 
     setupRemoveButtons();
 }
-
-
-
 
 //Remove button in overlay for every product
 function removeItemFromCart(name) {
@@ -303,12 +300,25 @@ function handlePaymentMethodChange() {
     const personalNumberContainer = document.getElementById('personal-number-container');
     const cardFields = document.getElementById('card-fields');
     const personalNumberInput = document.getElementById('personal-number');
-
+    
     // Default to card method
     paymentMethodSelector.value = 'card';
     cardFields.style.display = 'block';
     personalNumberContainer.style.display = 'none';
     personalNumberInput.required = false;
+
+    // Disable invoice payment option if total exceeds 800 SEK
+    if (cartTotal > 800) {
+        const invoiceOption = document.querySelector('option[value="invoice"]');
+        if (invoiceOption) {
+            invoiceOption.disabled = true;
+        }
+    } else {
+        const invoiceOption = document.querySelector('option[value="invoice"]');
+        if (invoiceOption) {
+            invoiceOption.disabled = false;
+        }
+    }
 
     // When payment method changes
     paymentMethodSelector.addEventListener('change', () => {
@@ -319,32 +329,33 @@ function handlePaymentMethodChange() {
     });
 }
 
-     // If there is monday before 10am
-     function isMondayMorning() {
-        const now = new Date();
-        return now.getDay() === 1 && now.getHours() < 10; //monday is 1
-    }
 
-    function calculateMondayDiscount(total) {
-        if (isMondayMorning()) {
-            return total * 0.1; 
-        }
-        return 0;
-    }
+// If there is monday before 10am
+function isMondayMorning() {
+    const now = new Date();
+    return now.getDay() === 1 && now.getHours() < 10; //monday is 1
+}
 
-    // Update discount monday
-    function updateMondayDiscount() {
-        const mondayDiscountElement = document.querySelector('#monday-discount');
-        const discount = calculateMondayDiscount(cartTotal);
-
-        if (discount > 0) {
-            mondayDiscountElement.style.display = 'block';
-            mondayDiscountElement.innerText = `Monday discount: 10% on the entire order! (-${discount} SEK)`;
-        } else {
-            mondayDiscountElement.style.display = 'none';
-        }
-        return discount;
+function calculateMondayDiscount(total) {
+    if (isMondayMorning()) {
+        return total * 0.1; 
     }
+    return 0;
+}
+
+// Update discount monday
+function updateMondayDiscount() {
+    const mondayDiscountElement = document.querySelector('#monday-discount');
+    const discount = calculateMondayDiscount(cartTotal);
+
+    if (discount > 0) {
+        mondayDiscountElement.style.display = 'block';
+        mondayDiscountElement.innerText = `Monday discount: 10% on the entire order! (-${discount} SEK)`;
+    } else {
+        mondayDiscountElement.style.display = 'none';
+    }
+    return discount;
+}
 
     //Discount from friday 3pm to sunday 3am
     function isWeekendSurge() {
@@ -490,6 +501,7 @@ function toggleTheme() {
     });
 }
 
+//Time for shopping button
 document.getElementById("shop-button").addEventListener("click", function () {
     const target = document.getElementById("shopContent");
     if (target) {
