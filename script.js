@@ -33,10 +33,20 @@ let cartItems = [];
 
 // Update cart total and count in HTML header
 const originalColor = '#faebd7';
+
 function updateCart() {
     const discount = updateMondayDiscount();
-    const totalAfterDiscount = cartTotal - discount;
+    const isWeekend = isWeekendSurge();  
+    let totalAfterDiscount = cartTotal - discount;
 
+    // Apply weekend price
+    if (isWeekend) {
+        totalAfterDiscount *= 1.15;  
+    }
+
+    totalAfterDiscount = totalAfterDiscount.toFixed(2);
+
+    // Update the header elements with the total price after discount and surcharge
     document.querySelector('#cart-count').innerText = cartCount;
     document.querySelector('#cart-total').innerText = totalAfterDiscount + " SEK";
     document.querySelector('#cart-total-header').innerText = "Total: " + totalAfterDiscount + " SEK";
@@ -50,6 +60,7 @@ function updateCart() {
 
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
+
 
 
 // Toggle shopping cart visibility
@@ -81,7 +92,7 @@ function addItemToCart(name, price, quantity) {
     } else {
         cartItems.push({
             name: name,
-            price: price,
+            price: price, 
             quantity: quantity,
             totalPrice: quantity * price,
         });
@@ -94,10 +105,15 @@ function addItemToCart(name, price, quantity) {
     updateOverlay();
 }
 
+
 //Things you want to buy that views in overlay
 function updateOverlay() {
     const cartDetails = document.querySelector('#cart-details');
     cartDetails.innerHTML = "";
+
+    const isWeekend = isWeekendSurge();  // Check if it's during the weekend
+
+    let totalCartPrice = 0;  
 
     cartItems.forEach(item => {
         const product = products.find(product => product.name === item.name);
@@ -106,20 +122,38 @@ function updateOverlay() {
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
 
+            let displayedPrice = item.price;
+            if (isWeekend) {
+                displayedPrice = item.price * 1.15; 
+            }
+
+            const itemTotalPrice = displayedPrice * item.quantity;
+            totalCartPrice += itemTotalPrice;  
+
             itemElement.innerHTML = `
                 <img src="${product.image.url}" alt="${product.image.alt}" class="cart-item-image" loading="lazy">
                 <p><strong>${item.name}</strong></p>
-                <p>Price for one: ${item.price} SEK</p>
+                <p>Price for one: ${displayedPrice.toFixed(2)} SEK</p> 
                 <p>Quantity: ${item.quantity}</p>
-                <p>Total: ${item.totalPrice} SEK</p>
+                <p>Total: ${itemTotalPrice.toFixed(2)} SEK</p> 
                 <button class="remove-item" data-name="${item.name}">Remove</button>
             `;
 
             cartDetails.appendChild(itemElement);
         }
     });
+
+    // Update total cart price in overlay after applying the weekend surcharge
+    const cartTotalElement = document.querySelector('#cart-total-overlay');
+    if (cartTotalElement) {
+        cartTotalElement.innerText = "Total: " + totalCartPrice.toFixed(2) + " SEK"; 
+    }
+
     setupRemoveButtons();
 }
+
+
+
 
 //Remove button in overlay for every product
 function removeItemFromCart(name) {
@@ -154,14 +188,22 @@ function displayProducts(productsToDisplay) {
     const shopContent = document.querySelector("#shopContent");
     shopContent.innerHTML = ""; // Clear content
 
+    const isWeekend = isWeekendSurge(); //if it's between friday 3pm to monday 3am
+
     productsToDisplay.forEach(product => {
+        let displayedPrice = product.price;
+
+        if (isWeekend) {
+            displayedPrice = product.price * 1.15;  
+        }
+
         const productElement = document.createElement("div");
         productElement.className = "shop-item";
 
         productElement.innerHTML = `
             <img src="${product.image.url}" alt="${product.image.alt}" loading="lazy">
             <p>${product.name}</p>
-            <p>${product.price} SEK</p>
+            <p>${displayedPrice.toFixed(2)} SEK</p> 
             <div class="rating">${generateStar(product.rating)}</div>
             <p>${product.category}</p>
             <div class="quantity-controls">
@@ -177,6 +219,8 @@ function displayProducts(productsToDisplay) {
     updateProductQuantity();
     setupAddToCartButtons();
 }
+
+
 
 // Handle product sorting
 function sortProducts() {
@@ -288,7 +332,7 @@ function handlePaymentMethodChange() {
         return 0;
     }
 
-    // Update discount
+    // Update discount monday
     function updateMondayDiscount() {
         const mondayDiscountElement = document.querySelector('#monday-discount');
         const discount = calculateMondayDiscount(cartTotal);
@@ -300,6 +344,20 @@ function handlePaymentMethodChange() {
             mondayDiscountElement.style.display = 'none';
         }
         return discount;
+    }
+
+    //Discount from friday 3pm to sunday 3am
+    function isWeekendSurge() {
+        const now = new Date();
+        const dayOfWeek = now.getDay();
+        const hourOfDay = now.getHours();
+
+        if ((dayOfWeek === 5 && hourOfDay >= 15) ||  
+            (dayOfWeek === 6) ||                 
+            (dayOfWeek === 1 && hourOfDay < 3)) { 
+            return true; 
+        }
+        return false;
     }
 
 document.addEventListener('DOMContentLoaded', function () {
