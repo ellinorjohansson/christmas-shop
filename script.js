@@ -65,6 +65,7 @@ function updateCart() {
     // Without shipping cost in header
     document.querySelector('#cart-count').innerText = cartCount;
     document.querySelector('#cart-total-header').innerText = "Total: " + totalAfterDiscount.toFixed(2) + " SEK";
+
     //Show shipping cost in overlay
     document.querySelector('#cart-total').innerText = totalWithShipping.toFixed(2) + " SEK";
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
@@ -78,8 +79,6 @@ function updateCart() {
 
     handlePaymentMethodChange();
 }
-
-
 
 // Toggle shopping cart visibility
 function toggleCart() {
@@ -101,8 +100,24 @@ function setupCartListeners() {
     document.querySelector('#close-cart').addEventListener('click', toggleCart);
 }
 
-// Handle adding product to cart
+let timerStarted = false; //If timer have started
+
+function startCartTimer() {
+    if (!timerStarted) {
+        timerStarted = true;
+
+        // Start 15 min timer
+        setTimeout(() => {
+            alert("You were too slow! Your cart is now being cleared.");
+            location.reload(); 
+        }, 15 * 60 * 1000); // 15 min
+    }
+}
+
 function addItemToCart(name, price, quantity) {
+    // Start timer when first product adds
+    startCartTimer();
+
     let existingItem = cartItems.find(item => item.name === name);
     if (existingItem) {
         existingItem.quantity += quantity;
@@ -116,15 +131,15 @@ function addItemToCart(name, price, quantity) {
         });
     }
 
-    // Update cart count and total
+    // Update shopping count and total
     cartCount += quantity;
     cartTotal += price * quantity;
 
     applyDiscountToCart();
-
     updateCart();
     updateOverlay();
 }
+
 
 function applyDiscountToCart() {
     let discountApplied = false;  
@@ -150,9 +165,6 @@ function applyDiscountToCart() {
     // Recalculate the total price after discounts
     cartTotal = cartItems.reduce((total, item) => total + item.totalPrice, 0);
 }
-
-
-
 
 //Things you want to buy that views in overlay
 function updateOverlay() {
@@ -192,7 +204,6 @@ function updateOverlay() {
 
     setupRemoveButtons();
 }
-
 
 //Remove button in overlay for every product
 function removeItemFromCart(name) {
@@ -258,8 +269,6 @@ function displayProducts(productsToDisplay) {
     updateProductQuantity();
     setupAddToCartButtons();
 }
-
-
 
 // Handle product sorting
 function sortProducts() {
@@ -370,7 +379,6 @@ function handlePaymentMethodChange() {
         personalNumberInput.required = !isCard;  
     });
 }
-
 
 // If there is monday before 10am
 function isMondayMorning() {
