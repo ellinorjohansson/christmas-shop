@@ -34,21 +34,23 @@ let cartItems = [];
 // Update cart total and count in HTML header
 const originalColor = '#faebd7';
 function updateCart() {
+    const discount = updateMondayDiscount();
+    const totalAfterDiscount = cartTotal - discount;
+
     document.querySelector('#cart-count').innerText = cartCount;
-    document.querySelector('#cart-total').innerText = cartTotal + " SEK";
-    document.querySelector('#cart-total-header').innerText = "Total: " + cartTotal + " SEK";
-    document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
+    document.querySelector('#cart-total').innerText = totalAfterDiscount + " SEK";
+    document.querySelector('#cart-total-header').innerText = "Total: " + totalAfterDiscount + " SEK";
+
     const cartTotalHeader = document.querySelector('#cart-total-header');
-    
-    // Change color on total in header when products add
     cartTotalHeader.style.color = '#752922';
-    
-    setTimeout(function() {
+
+    setTimeout(function () {
         cartTotalHeader.style.color = originalColor; 
     }, 500); 
 
     document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 }
+
 
 // Toggle shopping cart visibility
 function toggleCart() {
@@ -273,6 +275,33 @@ function handlePaymentMethodChange() {
     });
 }
 
+     // If there is monday before 10am
+     function isMondayMorning() {
+        const now = new Date();
+        return now.getDay() === 1 && now.getHours() < 10; //monday is 1
+    }
+
+    function calculateMondayDiscount(total) {
+        if (isMondayMorning()) {
+            return total * 0.1; 
+        }
+        return 0;
+    }
+
+    // Update discount
+    function updateMondayDiscount() {
+        const mondayDiscountElement = document.querySelector('#monday-discount');
+        const discount = calculateMondayDiscount(cartTotal);
+
+        if (discount > 0) {
+            mondayDiscountElement.style.display = 'block';
+            mondayDiscountElement.innerText = `Monday discount: 10% on the entire order! (-${discount} SEK)`;
+        } else {
+            mondayDiscountElement.style.display = 'none';
+        }
+        return discount;
+    }
+
 document.addEventListener('DOMContentLoaded', function () {
     const phoneInput = document.getElementById('phone-input');
     const emailInput = document.getElementById('email-input');
@@ -371,6 +400,7 @@ document.addEventListener('DOMContentLoaded', function () {
     resetShop();
     toggleTheme();
     handlePaymentMethodChange();
+    updateCart();
 
     document.getElementById("sort").addEventListener("change", sortProducts);
 

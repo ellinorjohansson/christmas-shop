@@ -165,6 +165,9 @@ form {
         font-size: 0.9em;
         margin-top: 4px;
     } 
+    .monday-sale {
+        display: none;
+    }
     .submit-btn {
         background-color: $submit-background-color; 
         color: $secondary-text-color;
@@ -228,7 +231,6 @@ form {
         }
     }
 }
-
 
 main {
     font-family: $secondary-font;
