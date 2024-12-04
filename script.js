@@ -34,22 +34,40 @@ let cartItems = [];
 // Update cart total and count in HTML header
 const originalColor = '#faebd7';
 
-function updateCart() {
-    const discount = updateMondayDiscount();
-    const isWeekend = isWeekendSurge();  
-    let totalAfterDiscount = cartTotal - discount;
+//Shipping cost
+function calculateShipping() {
+    let shippingCost = 0;
 
-    // Apply weekend price
+    if (cartCount > 14) {
+        shippingCost = 0; 
+    } else {
+        shippingCost = 25 + (cartTotal * 0.1); 
+    }
+
+    document.querySelector('#shipping-cost').innerText = shippingCost.toFixed(2) + " SEK";
+
+    return shippingCost;
+}
+
+function updateCart() {
+    const discount = updateMondayDiscount(); 
+    const isWeekend = isWeekendSurge();     
+    let totalAfterDiscount = cartTotal - discount; 
+
+    // Weekendpris
     if (isWeekend) {
         totalAfterDiscount *= 1.15;  
     }
 
-    totalAfterDiscount = totalAfterDiscount.toFixed(2);
+    const shippingCost = calculateShipping();
+    const totalWithShipping = totalAfterDiscount + shippingCost;
 
-    // Update the header elements with the total price after discount and surcharge
+    // Without shipping cost in header
     document.querySelector('#cart-count').innerText = cartCount;
-    document.querySelector('#cart-total').innerText = totalAfterDiscount + " SEK";
-    document.querySelector('#cart-total-header').innerText = "Total: " + totalAfterDiscount + " SEK";
+    document.querySelector('#cart-total-header').innerText = "Total: " + totalAfterDiscount.toFixed(2) + " SEK";
+    //Show shipping cost in overlay
+    document.querySelector('#cart-total').innerText = totalWithShipping.toFixed(2) + " SEK";
+    document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
 
     const cartTotalHeader = document.querySelector('#cart-total-header');
     cartTotalHeader.style.color = '#752922';
@@ -58,10 +76,10 @@ function updateCart() {
         cartTotalHeader.style.color = originalColor; 
     }, 500); 
 
-    document.querySelector('#cart-items').innerText = `Total products: ${cartCount}`;
-
     handlePaymentMethodChange();
 }
+
+
 
 // Toggle shopping cart visibility
 function toggleCart() {

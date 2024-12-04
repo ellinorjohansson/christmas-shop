@@ -56,12 +56,15 @@
           <h2>Your shopping cart</h2>
           <div id="cart-details"></div>
           <div class="price-count-overlay">
+            <div id="shipping-info">
+              <p>Shipping Cost: <span id="shipping-cost">0 SEK</span></p>
+            </div>
             <p class="cart-overlay-total" id="cart-items"></p>
             <p><strong>Total price:</strong> <span id="cart-total"></span></p>
             <!--Monday discount-->
             <span id="monday-discount" class="monday-sale"></span>
             <!--10 or more products discount-->
-            <span id="discount-message" class="ten-discount">Congratulations! You've received a 10% discount.</span>
+            <span id="discount-message" class="ten-discount">Congratulations! You've received a 10% discount.</span> 
           </div>
         </div>
         <form action="#">
@@ -152,7 +155,7 @@
           <label class="label-form">
             <span class="input-header">Discount Code</span>
             <input class="input-form" type="text" name="DiscountCode">
-          </label>
+          </label>       
 
           <!-- Buttons -->
           <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
