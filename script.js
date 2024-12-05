@@ -49,6 +49,7 @@ function calculateShipping() {
     return shippingCost;
 }
 
+//Cart update
 function updateCart() {
     const discount = updateMondayDiscount(); 
     const isWeekend = isWeekendSurge();     
@@ -94,7 +95,7 @@ function toggleCart() {
     }
 }
 
-// Open shopping cart on cart container click or enter key press
+// Open shopping cart
 function setupCartListeners() {
     document.querySelector('#cart-container').addEventListener('click', toggleCart);
     document.querySelector('#close-cart').addEventListener('click', toggleCart);
@@ -102,6 +103,7 @@ function setupCartListeners() {
 
 let timerStarted = false; //If timer have started
 
+//Alert that the customer is too slow
 function startCartTimer() {
     if (!timerStarted) {
         timerStarted = true;
@@ -114,8 +116,8 @@ function startCartTimer() {
     }
 }
 
+// Start timer when first product adds
 function addItemToCart(name, price, quantity) {
-    // Start timer when first product adds
     startCartTimer();
 
     let existingItem = cartItems.find(item => item.name === name);
@@ -140,12 +142,11 @@ function addItemToCart(name, price, quantity) {
     updateOverlay();
 }
 
-
+// Apply 10% discount if quantity is 10 or more
 function applyDiscountToCart() {
     let discountApplied = false;  
 
     cartItems.forEach(item => {
-        // Apply 10% discount if quantity is 10 or more
         if (item.quantity >= 10) {
             item.totalPrice = item.quantity * item.price * 0.9;  // 10% discount
             discountApplied = true;  
@@ -154,7 +155,6 @@ function applyDiscountToCart() {
         }
     });
 
-    // Visa eller göm discount-meddelandet baserat på flaggan
     const discountMessage = document.getElementById('discount-message');
     if (discountApplied) {
         discountMessage.style.display = 'block'; 
@@ -222,6 +222,7 @@ function removeItemFromCart(name) {
     }
 }
 
+//Setup of remove button in overlay
 function setupRemoveButtons() {
     const removeButtons = document.querySelectorAll('.remove-item');
 
@@ -380,12 +381,13 @@ function handlePaymentMethodChange() {
     });
 }
 
-// If there is monday before 10am
+// If there is monday before 10am discount
 function isMondayMorning() {
     const now = new Date();
     return now.getDay() === 1 && now.getHours() < 10; //monday is 1
 }
 
+//Monday discount on total
 function calculateMondayDiscount(total) {
     if (isMondayMorning()) {
         return total * 0.1; 
@@ -407,19 +409,19 @@ function updateMondayDiscount() {
     return discount;
 }
 
-    //Discount from friday 3pm to sunday 3am
-    function isWeekendSurge() {
-        const now = new Date();
-        const dayOfWeek = now.getDay();
-        const hourOfDay = now.getHours();
+//Discount from friday 3pm to sunday 3am
+function isWeekendSurge() {
+    const now = new Date();
+    const dayOfWeek = now.getDay();
+    const hourOfDay = now.getHours();
 
-        if ((dayOfWeek === 5 && hourOfDay >= 15) ||  
-            (dayOfWeek === 6) ||                 
-            (dayOfWeek === 1 && hourOfDay < 3)) { 
-            return true; 
-        }
-        return false;
+    if ((dayOfWeek === 5 && hourOfDay >= 15) ||  
+        (dayOfWeek === 6) ||                 
+        (dayOfWeek === 1 && hourOfDay < 3)) { 
+        return true; 
     }
+    return false;
+}
 
 document.addEventListener('DOMContentLoaded', function () {
     const phoneInput = document.getElementById('phone-input');
