@@ -1,53 +1,9 @@
-//Shopping product
-const products = [
-    { name: "Christmas Tree 1", category: "Christmas Tree", price: 500, rating: 5, 
-      image: { url: "assets/images/Christmas_tree1.avif.avif", width: 300, height: 300, alt: "Picture of a Christmas tree with snow over it in porcelain. In the background are more similar Christmas trees." } },
-    { name: "Christmas Tree 2", category: "Christmas Tree", price: 100, rating: 4, 
-      image: { url: "assets/images/Christmas_tree2.avif.avif", width: 300, height: 300, alt: "Picture of a Christmas tree with snow on it and a present under the tree, made in porcelain." } },
-    { name: "Christmas Tree 3", category: "Christmas Tree", price: 200, rating: 4, 
-      image: { url: "assets/images/Christmas_tree3.avif.avif", width: 300, height: 300, alt: "Picture of two Christmas trees with snow on them and are decorated in porcelain standing next to each other and under them is a glass box." } },
-    { name: "Gingerbread 1", category: "Gingerbread", price: 300, rating: 4, 
-      image: { url: "assets/images/Gingerbread_1.avif.avif", width: 300, height: 300, alt: "Decorated gingerbread house with a snowman standing outside wearing a red hat and scarf. Made in porcelain." } },
-    { name: "Gingerbread 2", category: "Gingerbread", price: 150, rating: 5, 
-      image: { url: "assets/images/Gingerbread_2-avif.avif", width: 300, height: 300, alt: "Decorated gingerbread house with a gingerbread standing outside the house. Made in porcelain." } },
-    { name: "Gingerbread 3", category: "Gingerbread", price: 250, rating: 3, 
-      image: { url: "assets/images/Gingerbread_3.avif.avif", width: 300, height: 300, alt: "Decorated gingerbread house with Christmas trees on either side of the door outside the house. Made in porcelain." } },
-    { name: "Santa Plate 1", category: "Plate", price: 120, rating: 2, 
-      image: { url: "assets/images/Santa_plate1.avif.avif", width: 300, height: 300, alt: "A Christmas plate with a red border all around and a pattern of a standing happy Santa Claus and around the Santa Claus there is a deer, polka dot pole and Christmas decorations." } },
-    { name: "Santa Plate 2", category: "Plate", price: 200, rating: 3, 
-      image: { url: "assets/images/Santa_plate2.avif.avif", width: 300, height: 300, alt: "Christmas plate with a blue border all around with a Santa's face in the middle and Christmas decoration in the form of deer and polka." } },
-    { name: "Santa Plate 3", category: "Plate", price: 80, rating: 4, 
-      image: { url: "assets/images/Santa_plate3.avif.avif", width: 300, height: 300, alt: "Christmas plate with a red white border all around with Santa in the center of the plate. Around Santa there are Christmas decorations in the form of stars and deer." } },
-    { name: "Gold Christmas Bauble", category: "Bauble", price: 50, rating: 2, 
-      image: { url: "assets/images/Gold_Christmas_Bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a golden Christmas bauble hanging from a Christmas tree." } },
-    { name: "Red Christmas Bauble", category: "Bauble", price: 300, rating: 4, 
-      image: { url: "assets/images/Red_Christmas_Bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a red and white Christmas bauble hanging from a Christmas tree." } },
-    { name: "Snowflake Christmas Bauble", category: "Bauble", price: 400, rating: 1, 
-      image: { url: "assets/images/Snowflake_Christmas_Bauble.avif.avif", width: 300, height: 300, alt: "Close-up of a snowflake Christmas bauble hanging from a Christmas tree." } },
-  ];
+import products from "./products.mjs";
 
 // Variables for total and count
 let cartCount = 0;
 let cartTotal = 0;
 let cartItems = [];
-
-// Update cart total and count in HTML header
-const originalColor = '#faebd7';
-
-//Shipping cost
-function calculateShipping() {
-    let shippingCost = 0;
-
-    if (cartCount > 14) {
-        shippingCost = 0; 
-    } else {
-        shippingCost = 25 + (cartTotal * 0.1); 
-    }
-
-    document.querySelector('#shipping-cost').innerText = shippingCost.toFixed(2) + " SEK";
-
-    return shippingCost;
-}
 
 //Cart update
 function updateCart() {
@@ -73,6 +29,7 @@ function updateCart() {
 
     const cartTotalHeader = document.querySelector('#cart-total-header');
     cartTotalHeader.style.color = '#752922';
+    const originalColor = '#faebd7';
 
     setTimeout(function () {
         cartTotalHeader.style.color = originalColor; 
@@ -101,22 +58,12 @@ function setupCartListeners() {
     document.querySelector('#close-cart').addEventListener('click', toggleCart);
 }
 
-let timerStarted = false; //If timer have started
+//TIMER ON WEBSITE
 
-//Alert that the customer is too slow
-function startCartTimer() {
-    if (!timerStarted) {
-        timerStarted = true;
+//For timer on the site
+let timerStarted = false; 
 
-        // Start 15 min timer
-        setTimeout(() => {
-            alert("You were too slow! Your cart is now being cleared.");
-            location.reload(); 
-        }, 15 * 60 * 1000); // 15 min
-    }
-}
-
-// Start timer when first product adds
+// Add item to cart so the timer can start
 function addItemToCart(name, price, quantity) {
     startCartTimer();
 
@@ -142,29 +89,20 @@ function addItemToCart(name, price, quantity) {
     updateOverlay();
 }
 
-// Apply 10% discount if quantity is 10 or more
-function applyDiscountToCart() {
-    let discountApplied = false;  
+//Alert that the customer is too slow and start timer
+function startCartTimer() {
+    if (!timerStarted) {
+        timerStarted = true;
 
-    cartItems.forEach(item => {
-        if (item.quantity >= 10) {
-            item.totalPrice = item.quantity * item.price * 0.9;  // 10% discount
-            discountApplied = true;  
-        } else {
-            item.totalPrice = item.quantity * item.price; 
-        }
-    });
-
-    const discountMessage = document.getElementById('discount-message');
-    if (discountApplied) {
-        discountMessage.style.display = 'block'; 
-    } else {
-        discountMessage.style.display = 'none';  
+        // Start 15 min timer
+        setTimeout(() => {
+            alert("You were too slow! Your cart is now being cleared.");
+            location.reload(); 
+        }, 15 * 60 * 1000); // 15 min
     }
-
-    // Recalculate the total price after discounts
-    cartTotal = cartItems.reduce((total, item) => total + item.totalPrice, 0);
 }
+
+//OVERLAY / SHOPPING CART
 
 //Things you want to buy that views in overlay
 function updateOverlay() {
@@ -205,6 +143,18 @@ function updateOverlay() {
     setupRemoveButtons();
 }
 
+//Setup of remove button in overlay
+function setupRemoveButtons() {
+    const removeButtons = document.querySelectorAll('.remove-item');
+
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const productName = button.getAttribute('data-name');
+            removeItemFromCart(productName);
+        });
+    });
+}
+
 //Remove button in overlay for every product
 function removeItemFromCart(name) {
     const itemIndex = cartItems.findIndex(item => item.name === name);
@@ -222,17 +172,66 @@ function removeItemFromCart(name) {
     }
 }
 
-//Setup of remove button in overlay
-function setupRemoveButtons() {
-    const removeButtons = document.querySelectorAll('.remove-item');
+//Shipping cost
+function calculateShipping() {
+    let shippingCost = 0;
 
-    removeButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const productName = button.getAttribute('data-name');
-            removeItemFromCart(productName);
-        });
+    if (cartCount > 14) {
+        shippingCost = 0; 
+    } else {
+        shippingCost = 25 + (cartTotal * 0.1); 
+    }
+
+    document.querySelector('#shipping-cost').innerText = shippingCost.toFixed(2) + " SEK";
+
+    return shippingCost;
+}
+
+// Handle payment method selection
+function handlePaymentMethodChange() {
+    const paymentMethodSelector = document.getElementById('payment-method');
+    const personalNumberContainer = document.getElementById('personal-number-container');
+    const cardFields = document.getElementById('card-fields');
+    const personalNumberInput = document.getElementById('personal-number');
+    
+    // Default to card method
+    paymentMethodSelector.value = 'card';
+    cardFields.style.display = 'block';
+    personalNumberContainer.style.display = 'none';
+    personalNumberInput.required = false;
+
+    // Disable invoice payment option if total exceeds 800 SEK
+    if (cartTotal > 800) {
+        const invoiceOption = document.querySelector('option[value="invoice"]');
+        if (invoiceOption) {
+            invoiceOption.disabled = true;
+        }
+    } else {
+        const invoiceOption = document.querySelector('option[value="invoice"]');
+        if (invoiceOption) {
+            invoiceOption.disabled = false;
+        }
+    }
+
+    // When payment method changes
+    paymentMethodSelector.addEventListener('change', () => {
+        const isCard = paymentMethodSelector.value === 'card';
+        cardFields.style.display = isCard ? 'block' : 'none';
+        personalNumberContainer.style.display = isCard ? 'none' : 'block';
+        personalNumberInput.required = !isCard;  
     });
 }
+
+// Reset shopping cart button that is in the checkout form
+function resetShop() {
+    document.getElementById('reset-btn').addEventListener('click', function() {
+        if (confirm("Are you sure you want to reset your order?")) {
+        location.reload();
+        }
+    });
+}
+
+//PRODUCTS YOU CAN BUY
 
 // Display all products
 function displayProducts(productsToDisplay) {
@@ -291,6 +290,19 @@ function sortProducts() {
     displayProducts(sortedProducts);
 }
 
+// Function for generate stars based on rating
+function generateStar(rating) {
+    let stars = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < rating) {
+            stars += '<span class="material-symbols-outlined rating-star">star</span>'; // Filled star
+        } else {
+            stars += '<span class="material-symbols-outlined rating-star-empty">star</span>'; // Empty star
+        }
+    }
+    return stars;
+}
+
 // Handle product quantity increase/decrease
 function updateProductQuantity() {
     const increaseButtons = document.querySelectorAll('.increase');
@@ -333,61 +345,15 @@ function setupAddToCartButtons() {
     });
 }
 
-// Function for generate stars based on rating
-function generateStar(rating) {
-    let stars = '';
-    for (let i = 0; i < 5; i++) {
-        if (i < rating) {
-            stars += '<span class="material-symbols-outlined rating-star">star</span>'; // Filled star
-        } else {
-            stars += '<span class="material-symbols-outlined rating-star-empty">star</span>'; // Empty star
-        }
-    }
-    return stars;
-}
+//DISCOUNT
 
-// Handle payment method selection and validation
-function handlePaymentMethodChange() {
-    const paymentMethodSelector = document.getElementById('payment-method');
-    const personalNumberContainer = document.getElementById('personal-number-container');
-    const cardFields = document.getElementById('card-fields');
-    const personalNumberInput = document.getElementById('personal-number');
-    
-    // Default to card method
-    paymentMethodSelector.value = 'card';
-    cardFields.style.display = 'block';
-    personalNumberContainer.style.display = 'none';
-    personalNumberInput.required = false;
-
-    // Disable invoice payment option if total exceeds 800 SEK
-    if (cartTotal > 800) {
-        const invoiceOption = document.querySelector('option[value="invoice"]');
-        if (invoiceOption) {
-            invoiceOption.disabled = true;
-        }
-    } else {
-        const invoiceOption = document.querySelector('option[value="invoice"]');
-        if (invoiceOption) {
-            invoiceOption.disabled = false;
-        }
-    }
-
-    // When payment method changes
-    paymentMethodSelector.addEventListener('change', () => {
-        const isCard = paymentMethodSelector.value === 'card';
-        cardFields.style.display = isCard ? 'block' : 'none';
-        personalNumberContainer.style.display = isCard ? 'none' : 'block';
-        personalNumberInput.required = !isCard;  
-    });
-}
-
-// If there is monday before 10am discount
+// If there is monday before 10am 
 function isMondayMorning() {
     const now = new Date();
     return now.getDay() === 1 && now.getHours() < 10; //monday is 1
 }
 
-//Monday discount on total
+//Monday discount on total price
 function calculateMondayDiscount(total) {
     if (isMondayMorning()) {
         return total * 0.1; 
@@ -423,6 +389,33 @@ function isWeekendSurge() {
     return false;
 }
 
+// Apply 10% discount if quantity is 10 or more
+function applyDiscountToCart() {
+    let discountApplied = false;  
+
+    cartItems.forEach(item => {
+        if (item.quantity >= 10) {
+            item.totalPrice = item.quantity * item.price * 0.9;  // 10% discount
+            discountApplied = true;  
+        } else {
+            item.totalPrice = item.quantity * item.price; 
+        }
+    });
+
+    const discountMessage = document.getElementById('discount-message');
+    if (discountApplied) {
+        discountMessage.style.display = 'block'; 
+    } else {
+        discountMessage.style.display = 'none';  
+    }
+
+    // Recalculate the total price after discounts
+    cartTotal = cartItems.reduce((total, item) => total + item.totalPrice, 0);
+}
+
+//DOM
+
+//DOMContentLoaded / validate form
 document.addEventListener('DOMContentLoaded', function () {
     const phoneInput = document.getElementById('phone-input');
     const emailInput = document.getElementById('email-input');
@@ -528,14 +521,15 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCart();
 });
 
-// Reset shopping cart
-function resetShop() {
-    document.getElementById('reset-btn').addEventListener('click', function() {
-        if (confirm("Are you sure you want to reset your order?")) {
-        location.reload();
-        }
-    });
-}
+//THINGS ON THE WEBSITE
+
+//Time for shopping button
+document.getElementById("shop-button").addEventListener("click", function () {
+    const target = document.getElementById("shopContent");
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
 
 // Toggle between dark and light mode
 function toggleTheme() {
@@ -553,11 +547,4 @@ function toggleTheme() {
     });
 }
 
-//Time for shopping button
-document.getElementById("shop-button").addEventListener("click", function () {
-    const target = document.getElementById("shopContent");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  });
   
