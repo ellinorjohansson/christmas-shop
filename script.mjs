@@ -413,23 +413,21 @@ function applyDiscountToCart() {
     cartTotal = cartItems.reduce((total, item) => total + item.totalPrice, 0);
 }
 
-//DOM
+//VALIDATION
 
-//DOMContentLoaded / validate form
-document.addEventListener('DOMContentLoaded', function () {
+//Function for validate form in checkout
+function setupValidation() {
     const phoneInput = document.getElementById('phone-input');
     const emailInput = document.getElementById('email-input');
     const personalNumberInput = document.getElementById('personal-number');
     const termsCheckbox = document.getElementById('terms-checkbox');
-
     const submitButton = document.getElementById('submit-form');
-    const orderConfirmation = document.getElementById('order-confirmation');
-    const closeConfirmation = document.getElementById('close-confirmation');
     const phoneError = document.getElementById('phone-error');
     const emailError = document.getElementById('email-error');
     const personalNumberError = document.getElementById('personal-number-error');
     const termsError = document.getElementById('terms-error');
 
+    // Reset error styles
     phoneError.style.display = 'none';
     emailError.style.display = 'none';
     personalNumberError.style.display = 'none';
@@ -487,28 +485,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    // Event listener on every input of form
+    // Event listeners
     phoneInput.addEventListener('input', validateForm);
     emailInput.addEventListener('input', validateForm);
     personalNumberInput.addEventListener('input', validateForm);
     termsCheckbox.addEventListener('change', validateForm);
 
-    // When the user click on 'place order', validate and show if there is error
+    //Activate submit button when validation is done correct
     submitButton.addEventListener('click', function (event) {
         event.preventDefault(); 
-    
         validateForm();
-        //Show order confirmation
         if (submitButton.classList.contains('active')) {
-            orderConfirmation.style.display = 'flex'; 
+            document.getElementById('order-confirmation').style.display = 'flex'; 
         }
     });
 
-    closeConfirmation.addEventListener('click', function () {
+    document.getElementById('close-confirmation').addEventListener('click', function () {
         location.reload(); 
     });
-    
-    
+}
+
+//FUNCTION FOR PRODUCT LOGIC
+
+// Function for product logic
+function setupProductFeatures() {
     displayProducts(products);
     setupCartListeners();
     resetShop();
@@ -517,8 +517,14 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCart();
 
     document.getElementById("sort").addEventListener("change", sortProducts);
-
     updateCart();
+}
+
+//DOM
+
+document.addEventListener('DOMContentLoaded', function () {
+    setupValidation(); 
+    setupProductFeatures(); 
 });
 
 //THINGS ON THE WEBSITE
