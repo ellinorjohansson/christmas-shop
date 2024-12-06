@@ -45,11 +45,13 @@ In this project, the following technologies and tools have been used:
 [Christmas Shop](https://medieinstitutet.github.io/fed24d-js-intro-inl-1-webshop-ellinorjohansson/)
 
 ## Screenshots
-HTML validation:
+- HTML validation:
 ![HTML Validation](assets/readme_image/html_validation.png)
-Lighthouse:
+
+- Lighthouse:
 ![HTML Validation](assets/readme_image/lighthouse.png)
-Screenshot of webshop:
+
+- Screenshot of webshop:
 ![HTML Validation](assets/readme_image/christmas_shop.png)
 
 ## Credit
