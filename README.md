@@ -47,14 +47,16 @@ In this project, the following technologies and tools have been used:
 ## Screenshots
 
 - **HTML validation:**
-  <img src="assets/readme_image/html_validation.png" alt="HTML Validation" width="300">
+
+![HTML Validation](assets/readme_image/html_validation.png)
 
 - **Lighthouse:**
-  <img src="assets/readme_image/lighthouse.png" alt="Lighthouse" width="300">
+
+![HTML Validation](assets/readme_image/lighthouse.png)
 
 - **Screenshot of webshop:**
-  <img src="assets/readme_image/christmas_shop.png" alt="Screenshot of webshop" width="300">
 
+![HTML Validation](assets/readme_image/christmas_shop.png)
 
 ## Credit
 
