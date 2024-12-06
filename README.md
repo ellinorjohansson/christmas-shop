@@ -2,11 +2,9 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=17082355&assignment_repo_type=AssignmentRepo)
 
 
-
 # Christmas Shop
 
 Task with the aim of learning the basics of the JavaScript course where the goal was a webshop based on a list of requirements from a customer.
-
 
 ## Learning
 
@@ -26,6 +24,7 @@ In this project, I have gained basic knowledge in the areas of:
 - Timers
 - Loops
 - Date
+
 ## Technical overview
 
 In this project, the following technologies and tools have been used:
@@ -35,14 +34,6 @@ In this project, the following technologies and tools have been used:
 - **JavaScript** – For interactivity and logic.
 - **Prettier** – For code formatting and styling.
 - **ESLint** – To find and fix code quality issues.
-## Credit
-
-[Unsplash](https://unsplash.com/)
-
-[Microsoft AI images](https://designer.microsoft.com/)
-
-
-
 
 ## Authors
 
@@ -55,6 +46,10 @@ In this project, the following technologies and tools have been used:
 
 ## Screenshots
 
-![HTML Validation]("assets/readme_image/html_validation)
+![HTML Validation](assets/readme_image/html_validation)
 
+## Credit
 
+[Unsplash](https://unsplash.com/)
+
+[Microsoft AI images](https://designer.microsoft.com/)
