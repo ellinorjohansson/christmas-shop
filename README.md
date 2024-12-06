@@ -46,7 +46,7 @@ In this project, the following technologies and tools have been used:
 
 ## Screenshots
 
-![HTML Validation](assets/readme_image/html_validation)
+![HTML Validation]("assets/readme_image/html_validation.png")
 
 ## Credit
 
