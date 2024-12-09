@@ -117,7 +117,7 @@
           <div id="personal-number-container">
             <label>
               <span class="input-header">Swedish Personal Number</span>
-              <input class="input-form" type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" required>
+              <input class="input-form" type="text" name="PersonalNumber" id="personal-number" placeholder="YYMMDD-XXXX" aria-label="Swedish personal number" required>
               <span class="error-message" id="personal-number-error"></span>
             </label>
           </div>
@@ -126,35 +126,35 @@
           <div id="card-fields">
             <label class="label-form">
               <span class="input-header">Card Number</span>
-              <input class="input-form" type="text" name="CardNumber" placeholder="**** **** **** ****">
+              <input class="input-form" type="text" name="CardNumber" placeholder="**** **** **** ****" aria-label="Card number">
             </label>
             <label class="label-form">
               <span class="input-header">Expiration Date</span>
-              <input class="input-form" type="text" name="CardExpiry" placeholder="MM/YY">
+              <input class="input-form" type="text" name="CardExpiry" placeholder="MM/YY" aria-label="Expiration date">
             </label>
             <label class="label-form">
               <span class="input-header">CVC</span>
-              <input class="input-form" type="text" name="CardCVC" placeholder="***">
+              <input class="input-form" type="text" name="CardCVC" placeholder="***" aria-label="CVC">
             </label>
           </div>
 
           <!-- Checkbox for terms -->
           <label class="checkbox">
             <span class="checkbox-span">I agree to the <a href="#">terms and conditions</a></span>
-            <input id="terms-checkbox" type="checkbox" name="PrivacyPolicy" class="check-terms" required>
+            <input id="terms-checkbox" type="checkbox" name="PrivacyPolicy" class="check-terms" aria-label="Checkbox for terms and condition" required>
           </label>
           <span class="error-message" id="terms-error"></span>
 
           <!-- Newsletter Checkbox -->
           <label class="checkbox">
             <span class="checkbox-span">Subscribe to our newsletter</span>
-            <input type="checkbox" name="Newsletter" class="check-subscribe" checked>
+            <input type="checkbox" name="Newsletter" class="check-subscribe" aria-label="Checkbox for subscribe to our newsletter" checked>
           </label>
 
           <!-- Discount Code -->
           <label class="label-form">
             <span class="input-header">Discount Code</span>
-            <input class="input-form" type="text" name="DiscountCode">
+            <input class="input-form" type="text" name="DiscountCode" aria-label="Input for discount code">
           </label>       
 
           <!-- Buttons -->
