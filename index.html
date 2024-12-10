@@ -47,7 +47,7 @@
     </header>
 
     <main>
-      <aside class="cart-overlay" id="cart-overlay">
+      <section class="cart-overlay" id="cart-overlay">
         <div class="cart-content">
           <!-- Close btn for shopping cart -->
           <button class="close-btn" id="close-cart"><span class="material-symbols-outlined">
@@ -71,23 +71,28 @@
           <h2 class="form-header">Checkout</h2>
           <label class="label-form">
             <span class="input-header">Firstname</span>
-            <input class="input-form" type="text" name="Firstname" required>
+            <span class="error-message" id="firstname-error"></span>
+            <input class="input-form" id="firstname" type="text" name="Firstname" required>
           </label>
           <label class="label-form">
             <span class="input-header">Lastname</span>
-            <input class="input-form" type="text" name="Lastname" required>
+            <span class="error-message" id="lastname-error"></span>
+            <input class="input-form" id="lastname" type="text" name="Lastname" required>
           </label>
           <label class="label-form">
             <span class="input-header">Address</span>
-            <input class="input-form" type="text" name="Address" required>
+            <span class="error-message" id="address-error"></span>
+            <input class="input-form" id="address" type="text" name="Address" required>
           </label>
           <label class="label-form">
             <span class="input-header">ZIP code</span>
-            <input class="input-form" type="number" name="ZIP" required>
+            <span class="error-message" id="zip-error"></span>
+            <input class="input-form" id="zip" type="number" name="ZIP" required>
           </label>
           <label class="label-form">
-            <span class="input-header">Postal Address</span>
-            <input class="input-form" type="text" name="Postal" required>
+            <span class="input-header">City</span>
+            <span class="error-message" id="city-error"></span>
+            <input class="input-form" id="city" type="text" name="City" required>
           </label>
           <label class="label-form">
             <span class="input-header">Port Code (optional)</span>
@@ -161,14 +166,14 @@
           <button type="button" id="reset-btn" class="form-reset">Reset Order</button>
           <button type="submit" id="submit-form" class="submit-btn">Place Order</button>
         </form>
-      </aside>
+      </section>
 
-      <aside id="order-confirmation" class="style-confirmation">
+      <section id="order-confirmation" class="style-confirmation">
         <h2 class="confirmation-text">Your order has been placed successfully!</h2>
         <p class="confirmation-text">Thank you for shopping with us. You will receive your confirmation email shortly.</p>
         <p class="confirmation-text">Estimated delivery time: 3 to 4 working days.</p>
         <button class="confirmation-close-style" id="close-confirmation">Close</button>
-      </aside>
+      </section>
     
 
       <section class="background-container">

@@ -417,17 +417,33 @@ function applyDiscountToCart() {
 
 //Function for validate form in checkout
 function setupValidation() {
+    const firstnameInput = document.getElementById('firstname');
+    const lastnameInput = document.getElementById('lastname');
+    const addressInput = document.getElementById('address');
+    const zipInput = document.getElementById('zip');
+    const cityInput = document.getElementById('city');
+
     const phoneInput = document.getElementById('phone-input');
     const emailInput = document.getElementById('email-input');
     const personalNumberInput = document.getElementById('personal-number');
     const termsCheckbox = document.getElementById('terms-checkbox');
     const submitButton = document.getElementById('submit-form');
+    const firstnameError = document.getElementById('firstname-error');
+    const lastnameError = document.getElementById('lastname-error');
+    const addressError = document.getElementById('address-error');
+    const zipError = document.getElementById('zip-error');
+    const cityError = document.getElementById('city-error');
     const phoneError = document.getElementById('phone-error');
     const emailError = document.getElementById('email-error');
     const personalNumberError = document.getElementById('personal-number-error');
     const termsError = document.getElementById('terms-error');
 
     // Reset error styles
+    firstnameError.style.display = 'none';
+    lastnameError.style.display = 'none';
+    addressError.style.display = 'none';
+    zipError.style.display = 'none';
+    cityError.style.display = 'none';
     phoneError.style.display = 'none';
     emailError.style.display = 'none';
     personalNumberError.style.display = 'none';
@@ -438,10 +454,51 @@ function setupValidation() {
         let isValid = true;
 
         // Clean error message
+        firstnameError.textContent = '';
+        lastnameError.textContent = '';
+        addressError.textContent = '';
+        zipError.textContent = '';
+        cityError.textContent = '';
         phoneError.textContent = '';
         emailError.textContent = '';
         personalNumberError.textContent = '';
         termsError.textContent = '';
+
+        //Validate firstname
+        if (firstnameInput.value.trim() === '') {
+            firstnameError.innerHTML = '<span class="material-symbols-outlined">error</span> Firstname is required.';
+            firstnameError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate lastname
+        if (lastnameInput.value.trim() === '') {
+            lastnameError.innerHTML = '<span class="material-symbols-outlined">error</span> Lastname is required.';
+            lastnameError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate address
+        if (addressInput.value.trim() === '') {
+            addressError.innerHTML = '<span class="material-symbols-outlined">error</span> Address is required.';
+            addressError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate zip code
+        const zipRegex = /^\d{5}$/;
+        if (!zipRegex.test(zipInput.value)) {
+            zipError.innerHTML = '<span class="material-symbols-outlined">error</span> Invalid ZIP code. Enter a 5-digit code.';
+            zipError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate city
+        if (cityInput.value.trim() === '') {
+            cityError.innerHTML = '<span class="material-symbols-outlined">error</span> City is required.';
+            cityError.style.display = 'block';
+            isValid = false;
+        }
 
         // Validate phone number
         const phoneRegex = /^[0-9]{10}$/;
@@ -486,6 +543,11 @@ function setupValidation() {
     }
 
     // Event listeners
+    firstnameInput.addEventListener('input', validateForm);
+    lastnameInput.addEventListener('input', validateForm);
+    addressInput.addEventListener('input', validateForm);
+    zipInput.addEventListener('input', validateForm);
+    cityInput.addEventListener('input', validateForm);
     phoneInput.addEventListener('input', validateForm);
     emailInput.addEventListener('input', validateForm);
     personalNumberInput.addEventListener('input', validateForm);
