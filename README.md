@@ -58,7 +58,7 @@ In this project, the following technologies and tools have been used:
 
 ![HTML Validation](assets/readme_image/lighthouse.png)
 
-- **Screenshot of webshop:**
+- **Screenshot of webshop on desktop, tablet & mobile:**
 
 ![HTML Validation](assets/readme_image/christmas_shop.png)
 
