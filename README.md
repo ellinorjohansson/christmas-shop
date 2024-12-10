@@ -50,6 +50,10 @@ In this project, the following technologies and tools have been used:
 
 ![HTML Validation](assets/readme_image/html_validation.png)
 
+- **CSS validation:**
+
+![CSS Validation](assets/readme_image/css_validation.png)
+
 - **Lighthouse:**
 
 ![HTML Validation](assets/readme_image/lighthouse.png)
