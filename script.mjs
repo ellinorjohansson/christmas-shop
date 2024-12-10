@@ -63,7 +63,9 @@ function setupCartListeners() {
   document.querySelector("#close-cart").addEventListener("click", toggleCart);
 }
 
-//TIMER ON WEBSITE
+/*
+ Timer on website
+*/
 
 //For timer on the site
 let timerStarted = false;
@@ -110,7 +112,9 @@ function startCartTimer() {
   }
 }
 
-//OVERLAY / SHOPPING CART
+/*
+ Overlay / shopping cart
+*/
 
 //Things you want to buy that views in overlay
 function updateOverlay() {
@@ -242,7 +246,9 @@ function resetShop() {
   });
 }
 
-//PRODUCTS YOU CAN BUY
+/*
+ Products
+*/
 
 // Display all products
 function displayProducts(productsToDisplay) {
@@ -364,7 +370,9 @@ function setupAddToCartButtons() {
   });
 }
 
-//DISCOUNT
+/*
+ Discount
+*/
 
 // If there is monday before 10am
 function isMondayMorning() {
@@ -434,7 +442,9 @@ function applyDiscountToCart() {
   cartTotal = cartItems.reduce((total, item) => total + item.totalPrice, 0);
 }
 
-//VALIDATION
+/*
+ Validation
+*/
 
 //Function for validate form in checkout
 function setupValidation() {
@@ -600,7 +610,9 @@ function setupValidation() {
     });
 }
 
-//FUNCTION FOR PRODUCT LOGIC
+/*
+ Function for product logic
+*/
 
 // Function for product logic
 function setupProductFeatures() {
@@ -615,14 +627,18 @@ function setupProductFeatures() {
   updateCart();
 }
 
-//DOM
+/*
+ DOM
+*/
 
 document.addEventListener("DOMContentLoaded", function () {
   setupValidation();
   setupProductFeatures();
 });
 
-//THINGS ON THE WEBSITE
+/*
+ Things on the website
+*/
 
 //Time for shopping button
 document.getElementById("shop-button").addEventListener("click", function () {
