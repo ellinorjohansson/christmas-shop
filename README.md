@@ -67,3 +67,4 @@ In this project, the following technologies and tools have been used:
 [Unsplash](https://unsplash.com/)
 
 [Microsoft AI images](https://designer.microsoft.com/)
+
