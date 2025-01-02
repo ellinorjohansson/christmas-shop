@@ -29,7 +29,7 @@ In this project, I have gained basic knowledge in the areas of:
 In this project, the following technologies and tools have been used:
 
 - **HTML** – The structure of the web page.
-- **SCSS** – For styling.
+- **SASS** – For styling.
 - **JavaScript** – For interactivity and logic.
 - **Prettier** – For code formatting and styling.
 - **ESLint** – To find and fix code quality issues.
