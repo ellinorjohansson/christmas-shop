@@ -1,4 +1,4 @@
-###Ongoing project
+Ongoing project
 
 
 # Christmas Shop
