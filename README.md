@@ -38,11 +38,6 @@ In this project, the following technologies and tools have been used:
 
 - [@ellinorjohansson](https://github.com/ellinorjohansson)
 
-
-## Live version
-
-[Christmas Shop](https://medieinstitutet.github.io/fed24d-js-intro-inl-1-webshop-ellinorjohansson/)
-
 ## Screenshots
 
 - **HTML validation:**
